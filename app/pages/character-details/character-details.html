@@ -1,0 +1,14 @@
+<ion-navbar *navbar>
+  <button menuToggle *ngIf="!selectedCharacter">
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>{{selectedCharacter.name}} Sheet</ion-title>
+</ion-navbar>
+
+<ion-content>
+ <div *ngIf="selectedCharacter" class="selection">
+    <b>{{selectedCharacter.Class}}</b>
+    <p><ion-badge primary>lv {{selectedCharacter.level}}</ion-badge></p>
+    <img src="{{selectedCharacter.image}}" alt="" style="max-width:400px">
+  </div>
+</ion-content>

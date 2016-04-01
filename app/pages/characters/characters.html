@@ -1,0 +1,27 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Characters</ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="getting-started">
+    <ion-list>
+        <ion-item-sliding *ngFor="#character of characters">
+            <button ion-item (click)="viewSheet($event, character)">
+                <ion-thumbnail item-left>
+                    <img src="{{character.image}}">
+                </ion-thumbnail>
+                <h2><strong>{{character.name}}</strong></h2>
+                <p><ion-badge light>lv {{character.level}}</ion-badge> {{character.Class}}</p>
+                <!--p>Last used on {{character.lastDate | date:"fullDate"}}</p-->
+            </button>
+            <ion-item-options>
+                <button (click)="favorite(item)" light><ion-icon name="copy"></ion-icon>Copy</button>
+                <button (click)="share(item)" danger><ion-icon name="trash"></ion-icon>Delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+</ion-content>
