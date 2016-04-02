@@ -2,7 +2,7 @@ import {App, IonicApp, Platform, MenuController} from 'ionic-angular';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {CharactersPage} from './pages/characters/characters';
-import {LoadingPage} from './pages/loading/loading';
+import {CharacterGenerator} from './pages/generator/generator-main';
 
 @App({
   templateUrl: 'build/app.html',
@@ -10,7 +10,7 @@ import {LoadingPage} from './pages/loading/loading';
 })
 class MyApp {
   // make HelloIonicPage the root (or first) page
-  rootPage: any = LoadingPage;//CharactersPage;
+  rootPage: any = CharactersPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -22,9 +22,8 @@ class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage },
       { title: 'Character List', component: CharactersPage },
+      { title: 'Character Builder', component: CharacterGenerator },
     ];
   }
 

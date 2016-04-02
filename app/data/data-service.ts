@@ -14,27 +14,31 @@ import {Language} from './models/Language-model';
 import {Skill} from './models/Skill-model'
 import {Tool} from './models/Tool-model';
 import {Weapon} from './models/Weapon-model';
+import {Race} from './models/Race-model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx'
 
 @Injectable()
 export class DataService {
-    abilities: Array<Ability>;
-    adventuringGear: Array<AdventuringGear>;
-    alignments: Array<Alignment>;
-    armor: Array<Armor>;
-    classes: Array<Class>;
-    equipmentPacks: Array<EquipmentPack>;
-    equipmentType: Array<EquipmentType>;
-    itemCategory: Array<ItemCategory>;
-    languages: Array<Language>;
-    skills: Array<Skill>;
-    tools: Array<Tool>;
-    weapons: Array<Weapon>;
+    public abilities: Array<Ability> = [];
+    adventuringGear: Array<AdventuringGear> = [];
+    alignments: Array<Alignment> = [];
+    armor: Array<Armor> = [];
+    classes: Array<Class> = [];
+    equipmentPacks: Array<EquipmentPack> = [];
+    equipmentType: Array<EquipmentType> = [];
+    itemCategory: Array<ItemCategory> = [];
+    languages: Array<Language> = [];
+    races: Array<Race> = [];
+    skills: Array<Skill> = [];
+    tools: Array<Tool> = [];
+    weapons: Array<Weapon> = [];
 
     constructor(private http: Http) {
-        console.info("Data Service Initialized");
-        this.loadJSONData();
+        //console.info("Data Service Initialized");
+        if (this.abilities.length == 0) {
+            //this.loadJSONData();
+        }
     }
 
 
@@ -52,6 +56,7 @@ export class DataService {
             this.http.get('data/json/equipmentType.json').map((res: Response) => res.json()),
             this.http.get('data/json/itemCategory.json').map((res: Response) => res.json()),
             this.http.get('data/json/languages.json').map((res: Response) => res.json()),
+            this.http.get('data/json/races.json').map((res: Response) => <Race[]>res.json()),
             this.http.get('data/json/skills.json').map((res: Response) => res.json()),
             this.http.get('data/json/tools.json').map((res: Response) => res.json()),
             this.http.get('data/json/weapons.json').map((res: Response) => res.json())
@@ -66,16 +71,32 @@ export class DataService {
                 this.equipmentType = data[6];
                 this.itemCategory = data[7];
                 this.languages = data[8];
-                this.skills = data[9];
-                this.tools = data[10];
-                this.weapons = data[11];
+                this.races = data[9];
+                this.skills = data[10];
+                this.tools = data[11];
+                this.weapons = data[12];
+                console.info(data);
             },
             err => console.error(err),
             () => console.info("loading complete?")
             );
     }
     getAbilities() {
-
-        return this.abilities;
+        return this.http.get('data/json/abilities.json')
+            .map(res => <Ability[]>res.json())
+            .catch(this.handleError);
+    }
+    getRaces() {
+        return this.http.get('data/json/races.json')
+            .map(res => <Race[]>res.json())
+            .do(data => console.log(data))
+            .catch(this.handleError);
+    }
+    private handleError(error: Response) {
+        // in a real world app, we may send the error to some remote logging infrastructure
+        // instead of just logging it to the console
+        console.error("Error in the call");
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 }

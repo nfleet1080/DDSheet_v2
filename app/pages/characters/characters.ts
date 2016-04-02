@@ -25,7 +25,7 @@ export class CharactersPage {
 
         // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('item');
-        data.loadJSONData().subscribe(
+/*        data.loadJSONData().subscribe(
             data => {
                 data.abilities = data[0];
                 data.adventuringGear = data[1];
@@ -45,7 +45,7 @@ export class CharactersPage {
                 console.log('data get complete');
                 console.info(data.abilities);
             }
-        );
+        );*/
 
         /*        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
                     'american-football', 'boat', 'bluetooth', 'build'];
