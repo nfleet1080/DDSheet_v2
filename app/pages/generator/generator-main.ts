@@ -1,6 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {Directive} from 'angular2/core';
-import {raceSelector} from './components/race-component';
+import {raceSelector} from './pages/race-page';
 
  @Directive({
   selector: 'SelectRace' 
