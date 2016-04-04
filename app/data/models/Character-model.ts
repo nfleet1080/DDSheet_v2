@@ -7,7 +7,8 @@ export class Character {
         public Class: string = "Fighter",
         public level: number = 1,
         public image: string = "img/robe.svg",
-        public lastDate: Date = new Date()
-
+        public lastDate: Date = new Date(),
+        public RaceID: number,
+        public SubraceID: number
     ) { }
 }

@@ -9,6 +9,7 @@ import {raceSelector} from './components/race-component';
   templateUrl: 'build/pages/generator/generator-main.html',
   directives:[raceSelector]
 })
+
 export class CharacterGenerator {
 
   constructor(private nav: NavController, navParams: NavParams) {
