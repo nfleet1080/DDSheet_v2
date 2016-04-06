@@ -5,7 +5,7 @@ import {Die} from './Die-model';
 
 
 interface AbilityScore {
-    abilityID: number;
+    id: number;
     bonus: number;
 }
 interface Names {
@@ -22,7 +22,7 @@ interface Measurement {
     modifier: Die;
 }
 
-interface Subrace {
+export interface Subrace {
     id: number;
     name: string;
     description: string;

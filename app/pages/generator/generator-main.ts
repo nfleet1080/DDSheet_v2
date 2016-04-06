@@ -15,4 +15,7 @@ export class CharacterGenerator {
   constructor(private nav: NavController, navParams: NavParams) {
 
   }
+  chooseRace() {
+    this.nav.push(raceSelector);
+  }
 }

@@ -1,17 +1,35 @@
 <ion-navbar *navbar>
-  <button menuToggle *ngIf="!selectedCharacter">
+    <button menuToggle *ngIf="!selectedCharacter">
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Character Builder</ion-title>
+    <ion-title>Character Builder</ion-title>
+    <!--<ion-buttons end>
+        <button solid secondary (click)="chooseRace()">
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </button>
+    </ion-buttons>-->
 </ion-navbar>
 
-<ion-content>
+<ion-content class="cards-bg">
     <ion-card>
         <ion-card-header>
-    This wizard will walk you through...
-  </ion-card-header>
-  <ion-card-content>
-    The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-  </ion-card-content>
+            This wizard will walk you through...
+        </ion-card-header>
+        <ion-card-content>
+            <ul>
+                <li>Selecting a Race</li>
+                <li>Selecting a Class</li>
+                <li>Determine Ability Scores</li>
+                <li>Describe your Character</li>
+                <li>Choosing Equipment</li>
+            </ul>
+        </ion-card-content>
+
     </ion-card>
+    <div padding>
+        <button block (click)="chooseRace()">
+            Begin
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </button>
+    </div>
 </ion-content>

@@ -1,9 +1,24 @@
-selectrace{
-    ion-list{
+
+    ion-list.raceList{
         margin-bottom:0;
         
         + ion-list{
             margin-top:0;
         }
     }
+
+.cards-bg{    
+    background-color: #f4f4f7;
+    
+    p{
+    + p{
+        margin-top:1em;
+    }
+    }
+    
+    }
+    
+    .subraceColor{
+        color:#006699;
+        p{color:#006699;}
     }

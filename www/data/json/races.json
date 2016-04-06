@@ -184,7 +184,7 @@
         "id": 2,
         "name": "Elf",
         "image": "images/elf.svg",
-        "description": "<p>Elves are a magical people of otherworldly grace, living in the world but not entirely part of it. They live in places of ethereal beauty, in the midst of ancient forests or in silvery spires glittering with faerie light, where soft music drifts through the air and gentle fragrances waft on the breeze. Elves love nature and magic, art and artistry, music and poetry, and the good things of the world.</p>",
+        "description": "Elves are a magical people of otherworldly grace, living in the world but not entirely part of it. They live in places of ethereal beauty, in the midst of ancient forests or in silvery spires glittering with faerie light, where soft music drifts through the air and gentle fragrances waft on the breeze. Elves love nature and magic, art and artistry, music and poetry, and the good things of the world.",
         "ASI": [
             {
                 "id": 2,
@@ -320,15 +320,21 @@
                         "description": "You can speak, read, and write one extra language of your choice."
                     }
                 ],
-                "baseHeight": 54,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 10
+                "height": {
+                    "baseValue": 54,
+                    "modifier": {
+                        "min": 1,
+                        "max": 10,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 90,
-                "weightModifier": {
-                    "qty": 1,
-                    "die": 4
+                "weight": {
+                    "baseValue": 90,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 1
+                    }
                 }
             },
             {
@@ -355,16 +361,23 @@
                         "description": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
                     }
                 ],
-                "baseHeight": 54,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 10
+                "height": {
+                    "baseValue": 54,
+                    "modifier": {
+                        "min": 1,
+                        "max": 10,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 100,
-                "weightModifier": {
-                    "qty": 1,
-                    "die": 4
+                "weight": {
+                    "baseValue": 100,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 1
+                    }
                 }
+                
             }
         ]
     },
@@ -472,15 +485,21 @@
                         "description": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you."
                     }
                 ],
-                "baseHeight": 31,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 4
+                "height": {
+                    "baseValue": 31,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 35,
-                "weightModifier": {
-                    "qty": 1,
-                    "die": 1
+                "weight": {
+                    "baseValue": 35,
+                    "modifier": {
+                        "min": 1,
+                        "max": 1,
+                        "count": 1
+                    }
                 }
             },
             {
@@ -499,15 +518,21 @@
                         "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
                     }
                 ],
-                "baseHeight": 31,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 4
+                "height": {
+                    "baseValue": 31,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 35,
-                "weightModifier": {
-                    "qty": 1,
-                    "die": 1
+                "weight": {
+                    "baseValue": 35,
+                    "modifier": {
+                        "min": 1,
+                        "max": 1,
+                        "count": 1
+                    }
                 }
             }
         ]
@@ -641,36 +666,50 @@
         "subraces": [
             {
                 "id": 1,
-                "name": "None",
+                "name": "Human",
                 "description": null,
                 "ASI": [],
                 "traits": [],
-                "baseHeight": 56,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 10
+                "height": {
+                    "baseValue": 56,
+                    "modifier": {
+                        "min": 1,
+                        "max": 10,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 110,
-                "weightModifier": {
-                    "qty": 2,
-                    "die": 4
+                "weight": {
+                    "baseValue": 110,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 2
+                    }
                 }
+
             },
             {
                 "id": 2,
                 "name": "Variant",
-                "description": null,
+                "description": "<p>If your campaign uses the optional feat rules from the Player’s Handbook, your Dungeon Master might allow these variant traits, all of which replace the human’s Ability Score Increase trait:</p><p><em>Ability Score Increase</em>. Two different ability scores of our choice increase by 1.</p><p><em>Skills</em>. You gain proficiency in one skill of your choice.</p><p><em>Feat</em>. You gain one feat of your choice.</p>",
                 "ASI": [],
                 "traits": [],
                 "baseHeight": 56,
-                "heightModifier": {
-                    "qty": 2,
-                    "die": 10
+                     "height": {
+                    "baseValue": 56,
+                    "modifier": {
+                        "min": 1,
+                        "max": 10,
+                        "count": 2
+                    }
                 },
-                "baseWeight": 110,
-                "weightModifier": {
-                    "qty": 2,
-                    "die": 4
+                "weight": {
+                    "baseValue": 110,
+                    "modifier": {
+                        "min": 1,
+                        "max": 4,
+                        "count": 2
+                    }
                 }
             }
         ]

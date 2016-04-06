@@ -4,11 +4,11 @@ export class Character {
 
     constructor(
         public name: string = "Character Name",
-        public Class: string = "Fighter",
+        public Class: number = 1,
         public level: number = 1,
         public image: string = "img/robe.svg",
         public lastDate: Date = new Date(),
-        public RaceID: number,
-        public SubraceID: number
+        public RaceID: number = 1,
+        public SubraceID: number = 1
     ) { }
 }

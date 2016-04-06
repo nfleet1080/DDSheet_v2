@@ -84,18 +84,21 @@ export class DataService {
     getAbilities() {
         return this.http.get('data/json/abilities.json')
             .map(res => <Ability[]>res.json())
+            //.do(data => console.log(data))
             .catch(this.handleError);
     }
     getRaces() {
         return this.http.get('data/json/races.json')
             .map(res => <Race[]>res.json())
-            .do(data => console.log(data))
+            //.do(data => console.log(data))
             .catch(this.handleError);
+    }
+    filterByID(obj:Array<any>,id:number){
+        return obj.filter(item => item.id === id)[0];
     }
     private handleError(error: Response) {
         // in a real world app, we may send the error to some remote logging infrastructure
         // instead of just logging it to the console
-        console.error("Error in the call");
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
