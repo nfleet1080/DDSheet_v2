@@ -1,24 +1,38 @@
+ion-list.raceList {
+    margin-bottom: 0;
+    + ion-list {
+        margin-top: 0;
+    }
+}
+.cards-bg {
+    background-color: #f4f4f7;
+    p {
+        + p {
+            margin-top: 1em;
+        }
 
-    ion-list.raceList{
-        margin-bottom:0;
-        
-        + ion-list{
-            margin-top:0;
+        +ul{
+          margin-top:0;
         }
     }
-
-.cards-bg{    
-    background-color: #f4f4f7;
-    
-    p{
-    + p{
-        margin-top:1em;
+}
+.subraceColor {
+    color: map-get($colors, highlight);
+    p {
+        color: map-get($colors, highlight);
     }
+}
+ion-card {
+    ion-item {
+        h2 {
+            color: #333333;
+            font-weight: 800 !important;
+        }
     }
-    
-    }
-    
-    .subraceColor{
-        color:#006699;
-        p{color:#006699;}
-    }
+}
+.racialTraits{
+  ion-label{
+    white-space:normal;
+    overflow:visible;
+  }
+}

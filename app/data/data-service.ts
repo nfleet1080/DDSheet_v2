@@ -93,6 +93,12 @@ export class DataService {
             //.do(data => console.log(data))
             .catch(this.handleError);
     }
+    getLanguages() {
+        return this.http.get('data/json/languages.json')
+            .map(res => <Language[]>res.json())
+            //.do(data => console.log(data))
+            .catch(this.handleError);
+    }
     filterByID(obj:Array<any>,id:number){
         return obj.filter(item => item.id === id)[0];
     }

@@ -66,3 +66,64 @@ export class SpeedInfoModal {
         this.viewCtrl.dismiss();
     }
 }
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Languages</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+            <p>By virtue of your race, your character can speak, read, and write certain languages.</p>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class LanguagesInfoModal {
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController) {
+        this.viewCtrl = viewCtrl;
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
+}
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Ability Score Increase</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+            <p>Every race increases one or more of a character’s ability scores.</p>
+            <p>Much of what your character does in the game depends on his or her six abilities: <strong>Strength</strong>, <strong>Dexterity</strong>, <strong>Constitution</strong>, <strong>Intelligence</strong>, <strong>Wisdom</strong>, and <strong>Charisma</strong>. Each ability has a score, which is a number you record on your character sheet.</p>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class asiInfoModal {
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController) {
+        this.viewCtrl = viewCtrl;
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
+}

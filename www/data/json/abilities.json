@@ -2,31 +2,31 @@
     {
         "id": 1,
         "name": "Strength",
-        "description": "Strength measures bodily power, athletic training, and the extent to which you can exert raw physical force. Important for: Barbarian, fighter, paladin"
+        "description": "<p>Strength measures bodily power, athletic training, and the extent to which you can exert raw physical force.</p> <p>Important for:</p> <ul><li>Barbarian</li><li>Fighter</li><li>Paladin</li></ul>"
   },
     {
         "id": 2,
         "name": "Dexterity",
-        "description": "Dexterity measures agility, reflexes, and balance. Important for: Monk, ranger, rogue"
+        "description": "<p>Dexterity measures agility, reflexes, and balance.</p> <p>Important for:</p> <ul><li>Monk</li><li>Ranger</li><li>Rogue</li></ul>"
   },
     {
         "id": 3,
         "name": "Constitution",
-        "description": "Constitution measures health, stamina, and vital force. Important for: Everyone"
+        "description": "<p>Constitution measures health, stamina, and vital force.</p> <p>Important for:</p> <ul><li>Everyone</li></ul>"
   },
     {
         "id": 4,
         "name": "Intelligence",
-        "description": "Intelligence measures mental acuity, accuracy of recall, and the ability to reason. Important for: Wizard"
+        "description": "<p>Intelligence measures mental acuity, accuracy of recall, and the ability to reason.</p> <p>Important for:</p> <ul><li>Wizard</li></ul>"
   },
     {
         "id": 5,
         "name": "Wisdom",
-        "description": "Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition. Important for: Cleric, druid"
+        "description": "<p>Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.</p> <p>Important for:</p> <ul><li>Cleric</li><li>Druid</li></ul>"
   },
     {
         "id": 6,
         "name": "Charisma",
-        "description": "Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality. Important for: Bard, sorcerer, warlock"
+        "description": "<p>Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality.</p> <p>Important for:</p> <ul><li>Bard</li><li>Sorcerer</li><li>Warlock</li></ul>"
   }
 ]
