@@ -3,16 +3,16 @@ import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController}
 import {DataService} from '../../../data/data-service';
 import {CharacterService} from '../../../data/character-service';
 import {SearchByIDPipe} from '../../../data/pipes/id-search-pipe';
-import {Race,Subrace} from '../../../data/models/race-model';
-import {Ability,AbilityInfoModal} from '../../../data/models/Ability-model';
+import {Race, Subrace} from '../../../data/models/race-model';
+import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Character} from '../../../data/models/Character-model';
-import {SizeInfoModal} from './../components/infoModals';
+import {SizeInfoModal,SpeedInfoModal} from './../components/infoModals';
 
 
 interface AbilityDisplay {
     ability: Ability;
     bonus: number;
-    color:boolean;
+    color: boolean;
 }
 
 @Page({
@@ -41,12 +41,23 @@ interface AbilityDisplay {
          <button ion-item *ngFor="#abil of raceAbilities" [class.subraceColor]="abil.color" (click)="InfoPopup(abil.ability)">
             {{abil.ability.name}} +{{abil.bonus}}
         </button>
-    </ion-list>  
+    </ion-list>
     </ion-card>
     <ion-card>
     <ion-card-header>Size</ion-card-header>
-    <ion-list><ion-item>{{race.size}}<button item-right clear small (click)="sizeInfoPopup()"><ion-icon name="information-circle"></ion-icon>
-</button></ion-item></ion-list> 
+    <ion-list>
+      <ion-item>
+        {{race.size}}<button item-right clear small (click)="sizeInfoPopup()"><ion-icon name="information-circle"></ion-icon></button>
+      </ion-item>
+    </ion-list>
+    </ion-card>
+    <ion-card>
+    <ion-card-header>Speed</ion-card-header>
+    <ion-list>
+      <ion-item>
+        {{race.speed}} feet<button item-right clear small (click)="speedInfoPopup()"><ion-icon name="information-circle"></ion-icon></button>
+      </ion-item>
+    </ion-list>
     </ion-card>
   </ion-content>
     `,
@@ -79,18 +90,14 @@ export class RaceReview implements OnInit {
                     var tmpAbility: AbilityDisplay = {
                         ability: dataHelper.filterByID(data, ability.id),
                         bonus: ability.bonus,
-                        color:true
+                        color: true
                     };
                     this.raceAbilities.push(tmpAbility);
                 });
             },
             error => console.error(error)
-            //,() => console.info(this.abilities)
-        );
-
-
-
-
+        //,() => console.info(this.abilities)
+            );
     }
 
     ngOnInit() { }
@@ -101,9 +108,13 @@ export class RaceReview implements OnInit {
         let modal = Modal.create(AbilityInfoModal, data);
         this.nav.present(modal);
     }
-    
-    sizeInfoPopup(){
+
+    sizeInfoPopup() {
         let modal = Modal.create(SizeInfoModal);
+        this.nav.present(modal);
+    }
+    speedInfoPopup() {
+        let modal = Modal.create(SpeedInfoModal);
         this.nav.present(modal);
     }
 }

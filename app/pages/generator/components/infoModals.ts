@@ -1,4 +1,4 @@
-import {Page, NavParams,ViewController} from 'ionic-angular';
+import {Page, NavParams, ViewController} from 'ionic-angular';
 
 
 @Page({
@@ -26,8 +26,38 @@ import {Page, NavParams,ViewController} from 'ionic-angular';
   </ion-content>`
 })
 export class SizeInfoModal {
-    viewCtrl:ViewController;
-    
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController) {
+        this.viewCtrl = viewCtrl;
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
+}
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Speed</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+            <p>Your speed determines how far you can move when traveling and fighting.</p>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class SpeedInfoModal {
+    viewCtrl: ViewController;
+
     constructor(viewCtrl: ViewController) {
         this.viewCtrl = viewCtrl;
     }

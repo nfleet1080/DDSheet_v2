@@ -36,7 +36,7 @@ enum Size { Small, Medium }
 
 /**
  * (description)
- * 
+ *
  * @export
  * @class Race
  */
@@ -57,5 +57,5 @@ export class Race {
         public languages: Array<number>,
         public subraces: Array<Subrace>,
         public playable: boolean
-    ) { }
+        ) { }
 }
