@@ -4,7 +4,7 @@ import {Language} from './Language-model'
 import {Die} from './Die-model';
 
 
-interface AbilityScore {
+export interface AbilityScore {
     id: number;
     bonus: number;
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Page, NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
-import {CharacterService} from '../../../data/character-service';
 import {Race} from '../../../data/models/race-model';
 import {Character} from '../../../data/models/Character-model';
 import {RaceReview} from './race-review-page';
@@ -30,7 +29,7 @@ import {RaceReview} from './race-review-page';
   </ion-content>
     `,
     //directives: [IONIC_DIRECTIVES],
-    providers: [DataService, CharacterService]
+    providers: [DataService]
     // templateUrl: 'app/name.component.html'
 })
 
@@ -39,12 +38,12 @@ export class raceSelector implements OnInit {
     errorMessage: any;
     tmpChr: Character = new Character();
 
-    constructor(private tempCharacter: CharacterService, dataHelper: DataService, private nav: NavController, navParams: NavParams) {
+    constructor(dataHelper: DataService, private nav: NavController, navParams: NavParams) {
         //console.log('race component loaded');
         if (navParams.get('tempCharacter')) {
             this.tmpChr = navParams.get('tempCharacter');
         }
-        
+
         dataHelper.getRaces().subscribe(
             data => this.races = data,
             error => console.error(error)//,

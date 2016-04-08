@@ -1,11 +1,17 @@
+.segment-button{background-color:#f5f5f5;}
+
 ion-list.raceList {
     margin-bottom: 0;
     + ion-list {
         margin-top: 0;
     }
 }
+.toolbar-background{
+  //background:#f3f3f3;
+}
 .cards-bg {
-    background-color: #f4f4f7;
+  background-color: $card-bg;
+    //background-color: #f4f4f7;
     p {
         + p {
             margin-top: 1em;
@@ -17,9 +23,9 @@ ion-list.raceList {
     }
 }
 .subraceColor {
-    color: map-get($colors, highlight);
+    color: map-get($colors, 'primary');
     p {
-        color: map-get($colors, highlight);
+        color: map-get($colors, 'primary');
     }
 }
 ion-card {

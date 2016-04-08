@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
-import {CharacterService} from '../../../data/character-service';
 import {SearchByIDPipe} from '../../../data/pipes/id-search-pipe';
 import {Race, Subrace} from '../../../data/models/race-model';
 import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
@@ -37,7 +36,7 @@ interface AbilityDisplay {
     <ion-card>
         <ion-card-content>
             <div [innerHTML]="race.description"></div>
-            <div *ngIf="selectedSubRace.description" highlight [innerHTML]="selectedSubRace.description" style="margin-top:1em"></div>
+            <div *ngIf="selectedSubRace.description"  [innerHTML]="selectedSubRace.description" style="margin-top:1em" class="subraceColor"></div>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -45,7 +44,7 @@ interface AbilityDisplay {
         <h2>Ability Score Increase</h2><button item-right clear small (click)="asiInfoPopup()"><ion-icon name="information-circle"></ion-icon></button>
     </ion-item>
     <ion-list>
-         <button ion-item *ngFor="#abil of raceAbilities" [attr.highlight]="abil.color" (click)="InfoPopup(abil.ability)">
+         <button ion-item *ngFor="#abil of raceAbilities" [class.subraceColor]="abil.color" (click)="InfoPopup(abil.ability)">
             {{abil.ability.name}} +{{abil.bonus}}
         </button>
     </ion-list>
@@ -81,7 +80,7 @@ interface AbilityDisplay {
           <h3>{{trait.name}}</h3>
           <p>{{trait.description}}</p>
         </ion-item>
-        <ion-item  highlight  *ngFor="#trait of selectedSubRace.traits">
+        <ion-item  class="subraceColor"  *ngFor="#trait of selectedSubRace.traits">
           <h3>{{trait.name}}</h3>
           <p>{{trait.description}}</p>
         </ion-item>
@@ -89,8 +88,7 @@ interface AbilityDisplay {
     </ion-card>
   </ion-content>
     `,
-    pipes: [SearchByIDPipe],
-    providers: [DataService, CharacterService]
+    providers: [DataService]
 })
 export class RaceReview implements OnInit {
     race: Race;
@@ -141,8 +139,11 @@ export class RaceReview implements OnInit {
 
     ngOnInit() { }
 
+    /**
+     * navigate to ability score page and pass along the current character info
+     */
     next() {
-        this.nav.push(AbilityScorePage);
+        this.nav.push(AbilityScorePage, { tempCharacter: this.tmpChr });
     }
 
     /**
