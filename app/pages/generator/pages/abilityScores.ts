@@ -5,6 +5,7 @@ import {Character} from '../../../data/models/Character-model';
 import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Race, Subrace, AbilityScore} from '../../../data/models/race-model';
 import {Die} from '../../../data/models/Die-model';
+import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 interface AbilityDisplay {
     ability: Ability;
@@ -34,47 +35,64 @@ interface AbilityDisplay {
       Manual
     </ion-segment-button>
   </ion-segment>
-  <ion-card [ngSwitch]="method">
-      <ion-card-content  *ngSwitchWhen="'roll'">
-  <button secondary  (click)="roll()">Reroll</button>
-    <button primary end (click)="roll()"><ion-icon name="help"></ion-icon></button>
+  <div [ngSwitch]="method">
+      <div  *ngSwitchWhen="'roll'">
+    <ion-card>
+    <ion-card-content>
+    Rolls ordered from highest value to lowest.  Drag the Abilities to re-position.
           <ion-row>
-              <ion-col width-25>
-                  <ion-list>
-                    <ion-item *ngFor="#result of rollResults">{{result}}</ion-item>
+              <ion-col width-25 class="rollCol">
+                  <ion-list no-lines>
+                    <ion-item *ngFor="#result of rollResults"><ion-badge highlight>{{result}}</ion-badge></ion-item>
                   </ion-list>
               </ion-col>
               <ion-col width-75>
-                  <ion-list>
-                      <ion-item *ngFor="#ab of abilities">{{ab.ability.name}}  <span *ngIf="ab.racialBonus > 0" primary>(+{{ab.racialBonus}})*</span></ion-item>
-                  </ion-list>
+                  <ion-item-group>
+                  <div [dragula]="rollAbilityOrder"   [dragulaModel]='rollAbilities'>
+                      <ion-item *ngFor="#ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" light>+{{ab.racialBonus}}</ion-badge></ion-item>
+                      </div>
+                  </ion-item-group>
               </ion-col>
           </ion-row>
-          <span primary>* Racial Bonuses</span>
       </ion-card-content>
-      <ion-card-content  *ngSwitchWhen="'quick'">quick</ion-card-content>
-      <ion-card-content  *ngSwitchWhen="'buy'">point buy</ion-card-content>
-      <ion-card-content  *ngSwitchWhen="'manual'">manual entry</ion-card-content>
-  </ion-card>
+      </ion-card>
+      <button secondary  (click)="roll()">Reroll</button>
+        <button primary style="float:right" (click)="roll()"><ion-icon name="help"></ion-icon></button>
+
+  </div>
+
+      <div  *ngSwitchWhen="'quick'">quick</div>
+    <div  *ngSwitchWhen="'buy'">point buy</div>
+      <div  *ngSwitchWhen="'manual'">manual entry</div>
+      </div>
   </ion-content>
   `,
-    providers: [DataService, CharacterService]
+    providers: [DataService, CharacterService, DragulaService],
+    directives: [Dragula]
+
 })
 export class AbilityScorePage {
     method: string = "roll";
     tmpChr: Character;
     abilities: Array<AbilityDisplay> = [];
+    rollAbilities: Array<AbilityDisplay> = [];
     race: Race;
     subrace: Subrace;
     rollResults: Array<number> = [];
 
-    constructor(private dataHelper: DataService, private nav: NavController, navParams: NavParams) {
+    constructor(private dragulaService: DragulaService, private dataHelper: DataService, private nav: NavController, navParams: NavParams) {
         this.tmpChr = navParams.get('tempCharacter');
 
         // get race and ability data (to show abilities and bonuses)
         this.getData();
         // perform initial roll
         this.roll();
+
+        dragulaService.dropModel.subscribe((value) => {
+            //debugger;
+            console.info(value);
+            //this.onDropModel(value.slice(1));
+        });
     }
 
     getData() {
@@ -102,7 +120,12 @@ export class AbilityScorePage {
                     //debugger;
                     var bonus: number = 0;
                     var abBonus: AbilityDisplay;
+                    // see if the ability is listed in the race's ability increase bonus
                     var tmpA: AbilityScore = this.dataHelper.filterByID(this.race.ASI, ability.id);
+                    if (!tmpA) {
+                        // no match in racial ability list, so check the subrace
+                        tmpA = this.dataHelper.filterByID(this.subrace.ASI, ability.id);
+                    }
                     if (tmpA) {
                         // found a bonus
                         bonus = tmpA.bonus;
@@ -115,7 +138,9 @@ export class AbilityScorePage {
                 });
             },
             error => console.error(error)
-        //,() => console.info(this.abilities)
+            , () => {
+                this.rollAbilities = this.abilities.slice()
+            }
             );
     }
 

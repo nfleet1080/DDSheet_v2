@@ -9,8 +9,12 @@ ion-list.raceList {
 .toolbar-background{
   //background:#f3f3f3;
 }
+.rollCol{
+  ion-item{text-align:center}
+  ion-label{overflow: visible}
+}
 .cards-bg {
-  background-color: $card-bg;
+  background-color: color($colors, card-bg);
     //background-color: #f4f4f7;
     p {
         + p {
@@ -23,9 +27,9 @@ ion-list.raceList {
     }
 }
 .subraceColor {
-    color: map-get($colors, 'primary');
+    color: color($colors, primary);
     p {
-        color: map-get($colors, 'primary');
+        color: color($colors, primary);
     }
 }
 ion-card {

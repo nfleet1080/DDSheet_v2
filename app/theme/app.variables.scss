@@ -23,20 +23,25 @@
 $colors: (
 primary: (
   base: #155765,
-  contrast: #ab9353
+  contrast: #f5f5f5
 ),
 secondary: (
   base: #57652a,
-  contrast: #4d2c3d
+  contrast: #ffffff
 ),
   danger:     #b56357,
-  light:      #eae3ea,
+  light:      #e8e8e8,
   dark:       #1d2731,
   favorite:   #69BB7B,
-  highlight: #948C75
+  highlight: (
+    base:#4d2c3d,
+    contrast: #ffffff
+    ),
+    card-bg:#d7cec7;
 );
+//highlight: #948C75
 
-$card-bg:#d7cec7;
+//$card-bg:#d7cec7;
 
 /*
 $colors: (

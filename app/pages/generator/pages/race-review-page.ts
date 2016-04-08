@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
-import {SearchByIDPipe} from '../../../data/pipes/id-search-pipe';
+import {IDtoDataPipe} from '../../../data/pipes/id-search-pipe';
 import {Race, Subrace} from '../../../data/models/race-model';
 import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Character} from '../../../data/models/Character-model';
@@ -45,7 +45,7 @@ interface AbilityDisplay {
     </ion-item>
     <ion-list>
          <button ion-item *ngFor="#abil of raceAbilities" [class.subraceColor]="abil.color" (click)="InfoPopup(abil.ability)">
-            {{abil.ability.name}} +{{abil.bonus}}
+            {{abil.ability.name}} <ion-badge light>+{{abil.bonus}}</ion-badge>
         </button>
     </ion-list>
     </ion-card>

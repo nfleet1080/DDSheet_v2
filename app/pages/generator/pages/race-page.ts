@@ -34,7 +34,7 @@ import {RaceReview} from './race-review-page';
 })
 
 export class raceSelector implements OnInit {
-    races: Array<Race> = new Array<Race>();
+    races: Array<Race>=[];
     errorMessage: any;
     tmpChr: Character = new Character();
 

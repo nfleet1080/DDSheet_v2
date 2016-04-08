@@ -99,6 +99,12 @@ export class DataService {
             //.do(data => console.log(data))
             .catch(this.handleError);
     }
+    getClasses(){
+      return this.http.get('data/json/classes.json')
+          .map(res => <Class[]>res.json())
+          //.do(data => console.log(data))
+          .catch(this.handleError);
+    }
     filterByID(obj:Array<any>,id:number){
         return obj.filter(item => item.id === id)[0];
     }

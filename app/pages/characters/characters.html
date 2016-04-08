@@ -6,8 +6,30 @@
 </ion-navbar>
 
 
-<ion-content padding class="getting-started">
-    <ion-list>
+<ion-content padding class="cards-bg">
+    <ion-card *ngFor="#character of characters">
+        <ion-item>
+            <h2><strong>{{character.name}}</strong></h2>
+            <p>
+                <ion-badge light>lv {{character.level}}</ion-badge> <span *ngFor="#class of character.Classes | IDtoDataPipe: classes">{{class.name}}</span></p>
+        </ion-item>
+        <div [ngStyle]="{'background-image':'url('+character.image+')'}" style="height:40vh;background-size:cover;background-position:center center"></div>
+        <ion-item>
+            <button primary clear item-left>
+                <ion-icon name="paper"></ion-icon>
+                <div>Sheet</div>
+            </button>
+            <button danger clear item-left>
+                <ion-icon name="create"></ion-icon>
+                <div>Edit</div>
+            </button>
+            <ion-note item-right>
+                11h ago
+            </ion-note>
+        </ion-item>
+    </ion-card>
+
+    <!--  <ion-list>
         <ion-item-sliding *ngFor="#character of characters">
             <button ion-item (click)="viewSheet($event, character)">
                 <ion-thumbnail item-left>
@@ -15,13 +37,12 @@
                 </ion-thumbnail>
                 <h2><strong>{{character.name}}</strong></h2>
                 <p><ion-badge light>lv {{character.level}}</ion-badge> {{character.Class}}</p>
-                <!--p>Last used on {{character.lastDate | date:"fullDate"}}</p-->
             </button>
             <ion-item-options>
                 <button (click)="favorite(item)" light><ion-icon name="copy"></ion-icon>Copy</button>
                 <button (click)="share(item)" danger><ion-icon name="trash"></ion-icon>Delete</button>
             </ion-item-options>
         </ion-item-sliding>
-    </ion-list>
+    </ion-list>-->
 
 </ion-content>
