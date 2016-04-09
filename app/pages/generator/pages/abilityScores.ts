@@ -1,4 +1,4 @@
-import {Page, NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
+import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {CharacterService} from '../../../data/character-service';
 import {Character} from '../../../data/models/Character-model';
@@ -47,11 +47,9 @@ interface AbilityDisplay {
                   </ion-list>
               </ion-col>
               <ion-col width-75>
-                  <ion-item-group>
                   <div [dragula]="rollAbilityOrder"   [dragulaModel]='rollAbilities'>
-                      <ion-item *ngFor="#ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" light>+{{ab.racialBonus}}</ion-badge></ion-item>
+                      <div class="abilities" *ngFor="#ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
                       </div>
-                  </ion-item-group>
               </ion-col>
           </ion-row>
       </ion-card-content>
@@ -88,11 +86,7 @@ export class AbilityScorePage {
         // perform initial roll
         this.roll();
 
-        dragulaService.dropModel.subscribe((value) => {
-            //debugger;
-            console.info(value);
-            //this.onDropModel(value.slice(1));
-        });
+
     }
 
     getData() {
@@ -168,9 +162,45 @@ export class AbilityScorePage {
         this.rollResults.sort(function(a, b) { return b - a });
     }
 
+
+
     next() {
         // determine which ability score page is active and use those scores
 
         //this.nav.push(AbilityScorePage, { tempCharacter: this.tmpChr });
+    }
+}
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>4d6 Roll</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content [innerHTML]="ab.description">
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class RollInfoModal {
+    ab: Ability = new Ability();
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+        //debugger;
+        this.ab.id = params.get('id');
+        this.ab.name = params.get('name');
+        this.ab.description = params.get('description');
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
     }
 }

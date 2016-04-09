@@ -7,7 +7,7 @@ import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Character} from '../../../data/models/Character-model';
 import {Language, LanguageInfoModal} from '../../../data/models/Language-model';
 import {SizeInfoModal, SpeedInfoModal, LanguagesInfoModal, asiInfoModal} from './../components/infoModals';
-import {AbilityScorePage} from './abilityScores';
+import {ClassPage} from './class-page';
 
 /**
  * This is just used to help display ability scores
@@ -143,7 +143,7 @@ export class RaceReview implements OnInit {
      * navigate to ability score page and pass along the current character info
      */
     next() {
-        this.nav.push(AbilityScorePage, { tempCharacter: this.tmpChr });
+        this.nav.push(ClassPage, { tempCharacter: this.tmpChr });
     }
 
     /**

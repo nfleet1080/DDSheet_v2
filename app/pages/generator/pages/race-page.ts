@@ -12,13 +12,10 @@ import {RaceReview} from './race-review-page';
   <button menuToggle *ngIf="!selectedCharacter">
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Character Builder</ion-title>
+  <ion-title>Select Race</ion-title>
 </ion-navbar>
 <ion-content padding class="cards-bg">
 <ion-card>
-<ion-card-header>
-        Select Race
-    </ion-card-header>
     <ion-list class="raceList" *ngFor="#race of races">
     <ion-item-divider light>{{race.name}}</ion-item-divider>
     <button ion-item *ngFor="#subrace of race.subraces" (click)="selectRace(race, subrace.id)">
