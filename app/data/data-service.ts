@@ -46,7 +46,7 @@ export class DataService {
      * pulls the data from json files into local objects
      */
     loadJSONData() {
-        Observable.forkJoin(
+        return Observable.forkJoin(
             this.http.get('data/json/abilities.json').map((res: Response) => res.json()),
             this.http.get('data/json/adventuringGear.json').map((res: Response) => res.json()),
             this.http.get('data/json/alignments.json').map((res: Response) => res.json()),
@@ -60,7 +60,7 @@ export class DataService {
             this.http.get('data/json/skills.json').map((res: Response) => res.json()),
             this.http.get('data/json/tools.json').map((res: Response) => res.json()),
             this.http.get('data/json/weapons.json').map((res: Response) => res.json())
-        ).subscribe(
+        /*).subscribe(
             data => {
                 this.abilities = data[0];
                 this.adventuringGear = data[1];
@@ -78,7 +78,7 @@ export class DataService {
                 console.info(data);
             },
             err => console.error(err),
-            () => console.info("loading complete?")
+          () => console.info("loading complete?")  */
             );
     }
     getAbilities() {
@@ -104,7 +104,8 @@ export class DataService {
           .map(res => <Class[]>res.json())
           //.do(data => console.log(data))
           .catch(this.handleError);
-    }
+}
+
     filterByID(obj:Array<any>,id:number){
         return obj.filter(item => item.id === id)[0];
     }

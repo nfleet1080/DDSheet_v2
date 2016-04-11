@@ -36,9 +36,9 @@ div.abilities {
     }
 }
 .subraceColor {
-    color: color($colors, primary);
+    color: color($colors, danger);
     p {
-        color: color($colors, primary);
+        color: color($colors, danger);
     }
 }
 ion-card {
@@ -49,7 +49,7 @@ ion-card {
         }
     }
 }
-.racialTraits {
+.racialTraits, .wrap {
     ion-label {
         white-space: normal;
         overflow: visible;

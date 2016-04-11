@@ -14,13 +14,35 @@ export class IDtoDataPipe implements PipeTransform {
 
     }
     transform(items: any[], args: any[]): any {
-      //debugger;
-
+        //debugger;
+        //console.info("pipe items: " + items);
+        //console.info("pipe args: " + args);
         //return items.filter(item => item.id.indexOf(args[0]) !== -1);
         let output: any = [];
         for (let i = 0; i < items.length; i++) {
             output.push(this.dataHelper.filterByID(args[0], items[i]));
         }
         return output;
+    }
+}
+
+
+@Pipe({
+    name: 'IDtoDataSinglePipe',
+    pure: false
+})
+
+/**
+ * Pass the "dictionary" data here
+ */
+export class IDtoDataSinglePipe implements PipeTransform {
+    constructor(private dataHelper: DataService) {
+
+    }
+    transform(value: any, args: any[]): any {
+        //debugger;
+        console.info(args);
+        //console.info("pipe args: " + args);
+        return this.dataHelper.filterByID(args[0], value)[args[1]];
     }
 }

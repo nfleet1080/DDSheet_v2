@@ -14,11 +14,11 @@ interface Wealth {
     amount: Die; //{min,max,count}
     multiplier: number;
 }
-interface Skills {
+export interface Skills {
     howMany: number;
     choices: Array<number>; //skill id
 }
-interface equip {
+export interface equip {
     Type: string;
     id: number;
     ifProficient: boolean;
@@ -30,7 +30,7 @@ export class Class {
 
     /**
      * Creates an instance of Class.
-     * 
+     *
      * @param {string} [name="Class Name"] (description)
      * @param {string} description (description)
      * @param {Die} hitDie (description)
@@ -52,12 +52,12 @@ export class Class {
         public name: string = "Class Name",
         public description: string,
         public hitDie: Die,
-        public primaryAbility: Array<number>, 
-        public savingThrowProficiencies: Array<number>, 
-        public equipmentTypeProficiencies: Array<number>, 
-        public armorProficiencies: Array<number>, 
-        public weaponProficiencies: Array<number>, 
-        public toolProficiencies: Array<number>, 
+        public primaryAbility: Array<number>,
+        public savingThrowProficiencies: Array<number>,
+        public equipmentTypeProficiencies: Array<number>,
+        public armorProficiencies: Array<number>,
+        public weaponProficiencies: Array<number>,
+        public toolProficiencies: Array<number>,
         public startingWealth: Wealth,
         public startingEquip: (equip)[][][],
         public skills: Skills,
