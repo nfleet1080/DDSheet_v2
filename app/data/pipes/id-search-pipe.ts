@@ -41,7 +41,7 @@ export class IDtoDataSinglePipe implements PipeTransform {
     }
     transform(value: any, args: any[]): any {
         //debugger;
-        console.info(args);
+        //console.info(args);
         //console.info("pipe args: " + args);
         return this.dataHelper.filterByID(args[0], value)[args[1]];
     }

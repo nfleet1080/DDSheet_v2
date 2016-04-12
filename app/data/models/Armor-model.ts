@@ -1,10 +1,16 @@
+interface ArmorClass{
+  ac:number;
+  abilityModifierID:number;
+  maxModifier:number;
+}
+
 export class Armor {
     public id: number;
 
 
     /**
      * Creates an instance of Armor.
-     * 
+     *
      * @param {number} typeId (equipmentType id)
      * @param {string} [name="Armor Name"] (description)
      * @param {number} [cost=1] (description)
@@ -16,12 +22,10 @@ export class Armor {
      * @param {number} weight (description)
      */
     constructor(
-        public typeId: number, 
+        public typeId: number,
         public name: string = "Armor Name",
         public cost: number = 1,
-        public armorClass: number = 1,
-        public armorClassModifierId: number, 
-        public armorClassModifierMax: number,
+        public armorClass: ArmorClass,
         public strength: number,
         public stealthDisadvantage: boolean = false,
         public weight: number

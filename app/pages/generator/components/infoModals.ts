@@ -1,6 +1,41 @@
 import {Page, NavParams, ViewController} from 'ionic-angular';
 
 
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>{{title}}</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+            <p>{{description}}</p>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class GenericModal {
+    viewCtrl: ViewController;
+    title:string = "";
+    description:string="";
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+        this.title = params.get('title');
+        this.description = params.get('description');
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
+}
+
 @Page({
     template: `
     <ion-toolbar>

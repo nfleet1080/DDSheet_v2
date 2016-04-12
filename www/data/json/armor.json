@@ -1,132 +1,171 @@
-﻿[
-  {
+﻿
+[{
     "id": 1,
     "typeID": 1,
     "name": "Padded",
     "cost": 500,
-    "armorClass": "11 + Dex modifier",
+    "armorClass": {
+        "ac": 11,
+        "abilityModifierID": 2,
+        "maxModifier": null
+    },
     "strength": null,
-    "stealth": "Disadvantage",
-    "weight": "8 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 8
+}, {
     "id": 2,
     "typeID": 1,
     "name": "Leather",
     "cost": 1000,
-    "armorClass": "11 + Dex modifier",
+    "armorClass": {
+        "ac": 11,
+        "abilityModifierID": 2,
+        "maxModifier": null
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "10 lb."
-  },
-  {
+    "stealthDisadvantage": false,
+    "weight": 10
+}, {
     "id": 3,
     "typeID": 1,
     "name": "Studded leather",
     "cost": 4500,
-    "armorClass": "12 + Dex modifier",
+    "armorClass": {
+        "ac": 12,
+        "abilityModifierID": 2,
+        "maxModifier": null
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "13 lb."
-  },
-  {
+    "stealthDisadvantage": false,
+    "weight": 13
+}, {
     "id": 4,
     "typeID": 2,
     "name": "Hide",
     "cost": 1000,
-    "armorClass": "12 + Dex modifier (max 2)",
+    "armorClass": {
+        "ac": 12,
+        "abilityModifierID": 2,
+        "maxModifier": 2
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "12 lb."
-  },
-  {
+    "stealthDisadvantage": false,
+    "weight": 12
+}, {
     "id": 5,
     "typeID": 2,
-    "name": "Chain shirt",
+    "name": "Chain mail",
     "cost": 5000,
-    "armorClass": "13 + Dex modifier (max 2)",
+    "armorClass": {
+        "ac": 13,
+        "abilityModifierID": 2,
+        "maxModifier": 2
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "20 lb."
-  },
-  {
+    "stealthDisadvantage": false,
+    "weight": 20
+}, {
     "id": 6,
     "typeID": 2,
     "name": "Scale mail",
     "cost": 5000,
-    "armorClass": "14 + Dex modifier (max 2)",
+    "armorClass": {
+        "ac": 14,
+        "abilityModifierID": 2,
+        "maxModifier": 2
+    },
     "strength": null,
-    "stealth": "Disadvantage",
-    "weight": "45 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 45
+}, {
     "id": 7,
     "typeID": 2,
     "name": "Breastplate",
     "cost": 40000,
-    "armorClass": "14 + Dex modifier (max 2)",
+    "armorClass": {
+        "ac": 14,
+        "abilityModifierID": 2,
+        "maxModifier": 2
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "20 lb."
-  },
-  {
+    "stealthDisadvantage": false,
+    "weight": 20
+}, {
     "id": 8,
     "typeID": 2,
     "name": "Half plate",
     "cost": 75000,
-    "armorClass": "15 + Dex modifier (max 2)",
+    "armorClass": {
+        "ac": 15,
+        "abilityModifierID": 2,
+        "maxModifier": 2
+    },
     "strength": null,
-    "stealth": "Disadvantage",
-    "weight": "40 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 40
+}, {
     "id": 9,
     "typeID": 3,
     "name": "Ring mail",
     "cost": 3000,
-    "armorClass": "14",
+    "armorClass": {
+        "ac": 14,
+        "abilityModifierID": null,
+        "maxModifier": null
+    },
     "strength": null,
-    "stealth": "Disadvantage",
-    "weight": "40 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 40
+}, {
     "id": 10,
     "typeID": 3,
     "name": "Chain mail",
     "cost": 7500,
-    "armorClass": "16",
+    "armorClass": {
+        "ac": 16,
+        "abilityModifierID": null,
+        "maxModifier": null
+    },
     "strength": 13,
-    "stealth": "Disadvantage",
-    "weight": "55 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 55
+}, {
     "id": 11,
     "typeID": 3,
     "name": "Splint",
     "cost": 20000,
-    "armorClass": "17",
+    "armorClass": {
+        "ac": 17,
+        "abilityModifierID": null,
+        "maxModifier": null
+    },
     "strength": 15,
-    "stealth": "Disadvantage",
-    "weight": "60 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 60
+}, {
     "id": 12,
     "typeID": 3,
     "name": "Plate",
     "cost": 150000,
-    "armorClass": "18",
+    "armorClass": {
+        "ac": 18,
+        "abilityModifierID": null,
+        "maxModifier": null
+    },
     "strength": 15,
-    "stealth": "Disadvantage",
-    "weight": "65 lb."
-  },
-  {
+    "stealthDisadvantage": true,
+    "weight": 65
+}, {
     "id": 13,
     "typeID": 4,
     "name": "Shield",
     "cost": 1000,
-    "armorClass": 2,
+    "armorClass": {
+        "ac": 2,
+        "abilityModifierID": null,
+        "maxModifier": null
+    },
     "strength": null,
-    "stealth": null,
-    "weight": "6 lb."
-  }
-]
+    "stealthDisadvantage": false,
+    "weight": 6
+}]
