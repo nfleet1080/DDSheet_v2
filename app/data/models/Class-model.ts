@@ -18,6 +18,16 @@ export interface Skills {
     howMany: number;
     choices: Array<number>; //skill id
 }
+
+/**
+ * Type Options:
+ * "Weapon"
+ * "Armor"
+ * "Gear"
+ * "Equipment"
+ * "Pack"
+ * "Category"
+ */
 export interface equip {
     Type: string;
     id: number;

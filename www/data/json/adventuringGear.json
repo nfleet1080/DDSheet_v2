@@ -962,5 +962,23 @@
     "CategoryID": null,
     "description": null,
     "capacity": null
+  },
+  {
+    "id": 108,
+    "name": "Prayer book",
+    "Cost": null,
+    "Weight": null,
+    "CategoryID": null,
+    "description": null,
+    "capacity": null
+  },
+  {
+    "id": 109,
+    "name": "Incense (stick)",
+    "Cost": null,
+    "Weight": null,
+    "CategoryID": null,
+    "description": null,
+    "capacity": null
   }
 ]

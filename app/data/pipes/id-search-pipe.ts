@@ -15,13 +15,15 @@ export class IDtoDataPipe implements PipeTransform {
     }
     transform(items: any[], args: any[]): any {
         //debugger;
-        //console.info("pipe items: " + items);
-        //console.info("pipe args: " + args);
         //return items.filter(item => item.id.indexOf(args[0]) !== -1);
         let output: any = [];
         for (let i = 0; i < items.length; i++) {
             output.push(this.dataHelper.filterByID(args[0], items[i]));
         }
+        //console.info(items);
+        //console.info(args);
+        //console.info(output);
+
         return output;
     }
 }

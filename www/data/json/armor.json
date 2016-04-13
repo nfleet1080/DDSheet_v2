@@ -2,7 +2,7 @@
 [{
     "id": 1,
     "typeID": 1,
-    "name": "Padded",
+    "name": "Padded armor",
     "cost": 500,
     "armorClass": {
         "ac": 11,
@@ -15,7 +15,7 @@
 }, {
     "id": 2,
     "typeID": 1,
-    "name": "Leather",
+    "name": "Leather armor",
     "cost": 1000,
     "armorClass": {
         "ac": 11,
@@ -28,7 +28,7 @@
 }, {
     "id": 3,
     "typeID": 1,
-    "name": "Studded leather",
+    "name": "Studded leather armor",
     "cost": 4500,
     "armorClass": {
         "ac": 12,
@@ -41,7 +41,7 @@
 }, {
     "id": 4,
     "typeID": 2,
-    "name": "Hide",
+    "name": "Hide armor",
     "cost": 1000,
     "armorClass": {
         "ac": 12,
@@ -132,7 +132,7 @@
 }, {
     "id": 11,
     "typeID": 3,
-    "name": "Splint",
+    "name": "Splint armor",
     "cost": 20000,
     "armorClass": {
         "ac": 17,
@@ -145,7 +145,7 @@
 }, {
     "id": 12,
     "typeID": 3,
-    "name": "Plate",
+    "name": "Plate armor",
     "cost": 150000,
     "armorClass": {
         "ac": 18,

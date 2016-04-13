@@ -7,10 +7,24 @@ import {Race, Subrace, AbilityScore} from '../../../data/models/race-model';
 import {Die} from '../../../data/models/Die-model';
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 
+import {Directive, ElementRef, Input} from 'angular2/core';
+@Directive({
+    selector: '[gu-transit]'
+})
+class DragDirective {
+    constructor(el: ElementRef) {
+        console.log(el);
+        el.nativeElement.style.backgroundColor = 'yellow';
+
+    }
+}
+
 interface AbilityDisplay {
     ability: Ability;
     racialBonus: number;
 }
+
+
 
 @Page({
     template: `
@@ -47,7 +61,7 @@ interface AbilityDisplay {
                   </ion-list>
               </ion-col>
               <ion-col width-75>
-                  <div [dragula]="rollAbilityOrder"   [dragulaModel]='rollAbilities'>
+                  <div [dragula]='"rollAbilityOrder"'   [dragulaModel]='rollAbilities'>
                       <div class="abilities" *ngFor="#ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
                       </div>
               </ion-col>
@@ -66,7 +80,7 @@ interface AbilityDisplay {
   </ion-content>
   `,
     providers: [DataService, CharacterService, DragulaService],
-    directives: [Dragula]
+    directives: [Dragula, DragDirective]
 
 })
 export class AbilityScorePage {
@@ -86,7 +100,10 @@ export class AbilityScorePage {
         // perform initial roll
         this.roll();
 
-
+        dragulaService.drag.subscribe((value) => {
+            console.log(value);
+            //this.onDrag(value.slice(1));
+        });
     }
 
     getData() {
@@ -100,8 +117,8 @@ export class AbilityScorePage {
                 this.loadAbilities();
             },
             error => console.error(error)
-        //,() => console.info(this.abilities)
-            );
+            //,() => console.info(this.abilities)
+        );
     }
 
     loadAbilities() {
@@ -135,7 +152,7 @@ export class AbilityScorePage {
             , () => {
                 this.rollAbilities = this.abilities.slice()
             }
-            );
+        );
     }
 
     roll() {

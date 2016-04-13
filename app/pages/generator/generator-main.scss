@@ -10,6 +10,10 @@ ion-list.raceList {
 .toolbar-background {
     //background:#f3f3f3;
 }
+.abilities.gu-transit{
+    background-color:color($colors, secondary, base);
+    color:color($colors, secondary, contrast);
+    }
 div.abilities {
     padding: 12px 8px 13px;
     background-color: color($colors, light);
