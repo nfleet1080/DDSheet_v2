@@ -15,7 +15,7 @@ import {Component, OnInit} from 'angular2/core';
 `
 })
 
-export class BackgroundSelection {
+export class BackgroundSelectionPage {
 
     constructor() { }
 

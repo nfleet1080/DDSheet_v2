@@ -1,6 +1,6 @@
 import {Page, NavController, NavParams, IONIC_DIRECTIVES,Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
-import {Class, equip, Skills} from '../../../data/models/class-model';
+import {ClassModel, equip, Skills} from '../../../data/models/Class-model';
 import {AbilityScorePage} from './abilityScores';
 import {GenericModal} from './../components/infoModals';
 import {IDtoDataPipe,IDtoDataSinglePipe} from '../../../data/pipes/id-search-pipe';
@@ -14,7 +14,7 @@ import {Tool} from '../../../data/models/Tool-model';
 import {Skill,SkillInfoModal} from '../../../data/models/Skill-model';
 import {AdventuringGear} from '../../../data/models/Adventuring-gear-model';
 import {EquipmentPack} from '../../../data/models/Equipment-pack-model';
-import {EquipmentType} from '../../../data/models/Equipment-type-model';
+import {EquipmentType,EquipmentTypeInfoModal} from '../../../data/models/Equipment-type-model';
 import {ItemCategory} from '../../../data/models/Item-category-model';
 
 
@@ -33,7 +33,7 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
 </button>
 </ion-buttons>
 </ion-navbar>
-<ion-content padding class="cards-bg" *ngIf="selectedClass">
+<ion-content padding class="cards-bg" *ngIf="dataLoadComplete">
 <ion-card>
 <ion-card-content>{{selectedClass.description}}</ion-card-content>
 </ion-card>
@@ -50,7 +50,7 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
 </ion-item>
 <ion-item-divider light>Hit Points at Higher Levels</ion-item-divider>
 <ion-item class="wrap">
-    {{selectedClass.hitDie.count}}d{{selectedClass.hitDie.max}} (or {{average(selectedClass?.hitDie)}}) + your Constitution modifier per {{selectedClass.name}} level after 1st
+    {{selectedClass.hitDie.count}}d{{selectedClass.hitDie.max}} (or {{selectedClass?.hitDie.average()}}) + your Constitution modifier per {{selectedClass.name}} level after 1st
 </ion-item>
 </ion-list>
 </ion-card>
@@ -62,9 +62,9 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
     <ion-item-divider light>Equipment</ion-item-divider>
     <!--ion-item *ngIf="selectedClass.equipmentTypeProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass?.equipmentTypeProficiencies.length > 0">
-        <ion-item *ngFor="#item of selectedClass.equipmentTypeProficiencies | IDtoDataPipe: equipmentTypeRef">
-            {{item.name}}
-        </ion-item>
+        <button (click)="equipmentPopup(item)" ion-item *ngFor="#item of selectedClass.equipmentTypeProficiencies | IDtoDataPipe: equipmentTypeRef">
+            {{item.name}}s
+        </button>
     </template>
     <!--ion-item *ngIf="selectedClass.armorProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass.armorProficiencies.length > 0">
@@ -113,12 +113,14 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
             <template [ngIf]="orOptions.length > 1 && index > 0"> or</template>
             <span *ngFor="#andOptions of orOptions;#index = index; #last = last">
                 <template [ngIf]="index > 0"> and</template>
+                <ion-badge *ngIf="andOptions.qty > 1" light>{{andOptions.qty}}</ion-badge>
                 <template [ngIf]='andOptions.Type == "Weapon"'>{{andOptions.id | IDtoDataSinglePipe: weaponRef: "name"}}<template [ngIf]="andOptions.ifProficient"> (if proficient)</template></template>
                 <template [ngIf]='andOptions.Type == "Armor"'>{{andOptions.id | IDtoDataSinglePipe: armorRef: "name"}}<template [ngIf]="andOptions.ifProficient"> (if proficient)</template></template>
                 <template [ngIf]='andOptions.Type == "Gear"'>{{andOptions.id | IDtoDataSinglePipe: gearRef: "name"}}</template>
-                <template [ngIf]='andOptions.Type == "Equipment"'>{{andOptions.id | IDtoDataSinglePipe: equipmentTypeRef: "name"}} (any one of)</template>
+                <template [ngIf]='andOptions.Type == "Equipment"'><template [ngIf]="andOptions.qty == 1" light>any </template>{{andOptions.id | IDtoDataSinglePipe: equipmentTypeRef: "name"}}<template [ngIf]="andOptions.qty > 1" light>s</template></template>
                 <template [ngIf]='andOptions.Type == "Pack"'>{{andOptions.id | IDtoDataSinglePipe: equipmentPackRef: "name"}}</template>
                 <template [ngIf]='andOptions.Type == "Category"'>{{andOptions.id | IDtoDataSinglePipe: itemCategoryRef: "name"}}</template>
+                <template [ngIf]='andOptions.Type == "Tool"'>{{andOptions.id | IDtoDataSinglePipe: toolRef: "name"}}</template>
             </span>
         </div>
       </ion-item>
@@ -131,18 +133,19 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
 })
 export class ClassReviewPage {
     tmpChr: Character;
-    selectedClass: Class;
+    selectedClass: ClassModel = new ClassModel();
     abilitiesRef: Array<Ability>;
     armorRef: Array<Armor>;
     weaponRef: Array<Weapon>;
     toolRef: Array<Tool>;
-    classRef: Array<Class>;
+    classRef: Array<ClassModel>;
     skillRef: Array<Skill>;
     gearRef: Array<AdventuringGear>;
     itemCategoryRef: Array<ItemCategory>;
     equipmentPackRef: Array<EquipmentPack>;
     equipmentTypeRef: Array<EquipmentType>;
     alphaIndex:Array<string> = ["a","b","c","d","e","f"];
+    dataLoadComplete:boolean = false;
 
     constructor(private dataHelper: DataService, private nav: NavController, private navParams: NavParams) {
         this.getData();
@@ -167,13 +170,17 @@ export class ClassReviewPage {
             error => console.error(error)
             , () => {
                 // set the main class object once all data is available
-                this.selectedClass = this.navParams.get('selClass');
+                //this.selectedClass = this.navParams.get('selClass');
+                this.selectedClass = this.dataHelper.filterByID(this.classRef, this.tmpChr.Classes[0]);
+                this.dataLoadComplete = true;
                 //console.info(this.selectedClass.equipmentTypeProficiencies);
             }
             );
     }
-    average(hitDie: Die) {
-        return Math.ceil((hitDie.max + hitDie.count) / 2);
+    
+    average(die:Die){
+        console.info(die);
+        //return die.avg();
     }
 
     genericPopup(title:string, desc:string){
@@ -187,6 +194,10 @@ export class ClassReviewPage {
      */
   abilityPopup(data: Ability) {
         let modal = Modal.create(AbilityInfoModal, data);
+        this.nav.present(modal);
+    }
+    equipmentPopup(data: EquipmentType) {
+        let modal = Modal.create(EquipmentTypeInfoModal, data);
         this.nav.present(modal);
     }
       skillPopup(data: Skill) {

@@ -3,7 +3,7 @@ import {CharacterDetailsPage} from '../character-details/character-details';
 import {DataService} from '../../data/data-service';
 import {Ability} from '../../data/models/Ability-model';
 import {Character} from '../../data/models/Character-model';
-import {Class} from '../../data/models/Class-model';
+import {ClassModel} from '../../data/models/Class-model';
 import {IDtoDataPipe} from '../../data/pipes/id-search-pipe';
 
 
@@ -18,7 +18,7 @@ export class CharactersPage {
     items: Array<{ title: string, note: string, icon: string }>;
     characters: Array<Character> = [];
     abilities: Array<Ability>;
-    classes: Array<Class>;
+    classes: Array<ClassModel>;
 
     constructor(private nav: NavController, navParams: NavParams, private dataHelper: DataService) {
         this.nav = nav;

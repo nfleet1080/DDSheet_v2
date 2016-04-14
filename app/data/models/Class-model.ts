@@ -1,14 +1,7 @@
 import {Die} from './Die-model';
-/*import {Ability} from './Ability-model';
-import {AdventuringGear} from './Adventuring-gear-model'
-import {Alignment} from './Alignment-model';
-import {Armor} from './Armor-model';
-import {EquipmentPack} from './Equipment-pack-model';
-import {EquipmentType} from './Equipment-type-model';
-import {Language} from './Language-model';
-import {Skill} from './Skill-model'
-import {Tool} from './Tool-model';
-import {Weapon} from './Weapon-model';*/
+import {Component} from 'angular2/core';
+import {Page, NavParams, ViewController} from 'ionic-angular';
+
 
 interface Wealth {
     amount: Die; //{min,max,count}
@@ -35,8 +28,8 @@ export interface equip {
     qty: number;
 }
 
-export class Class {
-    public id: number;
+export class ClassModel {
+    
 
     /**
      * Creates an instance of Class.
@@ -59,21 +52,88 @@ export class Class {
      * @param {string} spellSuggestion (description)
      */
     constructor(
+        public id: number = 1,
         public name: string = "Class Name",
-        public description: string,
-        public hitDie: Die,
-        public primaryAbility: Array<number>,
-        public savingThrowProficiencies: Array<number>,
-        public equipmentTypeProficiencies: Array<number>,
-        public armorProficiencies: Array<number>,
-        public weaponProficiencies: Array<number>,
-        public toolProficiencies: Array<number>,
-        public startingWealth: Wealth,
-        public startingEquip: (equip)[][][],
-        public skills: Skills,
-        public icon: string,
-        public abilitySuggestion: string,
-        public backgroundSuggestion: string,
-        public spellSuggestion: string
+        public description: string = null,
+        public hitDie: Die = new Die(),
+        public primaryAbility: Array<number> = [],
+        public savingThrowProficiencies: Array<number> = [],
+        public equipmentTypeProficiencies: Array<number> = [],
+        public armorProficiencies: Array<number> = [],
+        public weaponProficiencies: Array<number> = [],
+        public toolProficiencies: Array<number> = [],
+        public startingWealth: Wealth = {amount:new Die(),multiplier:1},
+        public startingEquip: (equip)[][][] = [],
+        public skills: Skills = null,
+        public icon: string = null,
+        public abilitySuggestion: string = null,
+        public backgroundSuggestion: string = null,
+        public spellSuggestion: string = null
     ) { }
+}
+
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Quick Build</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card *ngFor="#class of cl">
+        <ion-item>
+            <h2>{{class.name}}</h2>
+        </ion-item>
+        <ion-card-content [innerHTML]="class.abilitySuggestion">
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class AbilitySuggestionModal {
+    cl: Array<ClassModel> = null;
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+        //debugger;
+        this.cl = params.data;
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
+}
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>{{cl.name}} Quick Build</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content [innerHTML]="cl.spellSuggestion">
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class SpellSuggestionModal {
+    cl: ClassModel = null;
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+        //debugger;
+        this.cl = params.data;
+    }
+
+    close() {
+        this.viewCtrl.dismiss();
+    }
 }

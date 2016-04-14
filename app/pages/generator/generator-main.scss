@@ -1,32 +1,39 @@
 .segment-button {
     background-color: #f5f5f5;
 }
+
 ion-list.raceList {
     margin-bottom: 0;
     + ion-list {
         margin-top: 0;
     }
 }
-.toolbar-background {
+
+/*.toolbar-background {
     //background:#f3f3f3;
+}*/
+
+.abilities.gu-transit {
+    background-color: color($colors, secondary, base);
+    color: color($colors, secondary, contrast);
 }
-.abilities.gu-transit{
-    background-color:color($colors, secondary, base);
-    color:color($colors, secondary, contrast);
-    }
+
 div.abilities {
     padding: 12px 8px 13px;
     background-color: color($colors, light);
     border-bottom: 1px solid color($colors, dark);
 }
+
 .rollCol {
     ion-item {
         text-align: center;
+        padding:0;
     }
     ion-label {
         overflow: visible;
     }
 }
+
 .cards-bg {
     background-color: color($colors, card-bg);
     //background-color: #f4f4f7;
@@ -39,12 +46,14 @@ div.abilities {
         }
     }
 }
+
 .subraceColor {
     color: color($colors, danger);
     p {
         color: color($colors, danger);
     }
 }
+
 ion-card {
     ion-item {
         h2 {
@@ -53,6 +62,7 @@ ion-card {
         }
     }
 }
+
 .racialTraits, .wrap {
     ion-label {
         white-space: normal;

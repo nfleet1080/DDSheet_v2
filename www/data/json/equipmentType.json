@@ -29,42 +29,42 @@
     },
     {
         "id": 5,
-        "name": "Simple Melee Weapons",
+        "name": "Simple Melee Weapon",
         "don": null,
         "doff": null,
         "description": "<p>A melee weapon is used to attack a target within 5 feet of you.</p><p>Most people can use simple weapons with proficiency. These weapons include clubs, maces, and other weapons often found in the hands of commoners.</p>"
     },
     {
         "id": 6,
-        "name": "Simple Ranged Weapons",
+        "name": "Simple Ranged Weapon",
         "don": null,
         "doff": null,
         "description": "<p>A ranged weapon is used to attack a target at a distance.</p><p>Most people can use simple weapons with proficiency. These weapons include clubs, maces, and other weapons often found in the hands of commoners.</p>"
     },
     {
         "id": 7,
-        "name": "Martial Melee Weapons",
+        "name": "Martial Melee Weapon",
         "don": null,
         "doff": null,
         "description": "<p>A melee weapon is used to attack a target within 5 feet of you.</p><p>Martial weapons, including swords, axes, and polearms, require more specialized training to use effectively. Most warriors use martial weapons because these weapons put their fighting style and training to best use.</p>"
     },
     {
         "id": 8,
-        "name": "Martial Ranged Weapons",
+        "name": "Martial Ranged Weapon",
         "don": null,
         "doff": null,
         "description": "<p>A ranged weapon is used to attack a target at a distance.</p><p>Martial weapons, including swords, axes, and polearms, require more specialized training to use effectively. Most warriors use martial weapons because these weapons put their fighting style and training to best use.</p>"
     },
     {
         "id": 9,
-        "name": "Simple Weapons",
+        "name": "Simple Weapon",
         "don": null,
         "doff": null,
         "description": "Most people can use simple weapons with proficiency. These weapons include clubs, maces, and other weapons often found in the hands of commoners."
     },
     {
         "id": 10,
-        "name": "Martial Weapons",
+        "name": "Martial Weapon",
         "don": null,
         "doff": null,
         "description": "Martial weapons, including swords, axes, and polearms, require more specialized training to use effectively. Most warriors use martial weapons because these weapons put their fighting style and training to best use."

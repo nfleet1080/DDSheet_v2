@@ -32,10 +32,14 @@ export class Skill {
     <ion-item>
     <h2>Ability</h2>
 </ion-item>
-        <button ion-item (click)="abilityPopup(ab)" [innerHTML]="ab.name">
+<ion-list>
+        <button ion-item (click)="abilityPopup(ab)">
+        {{ab.name}}
         </button>
+        </ion-list>
     </ion-card>
-  </ion-content>`
+  </ion-content>`,
+    providers: [DataService]
 })
 export class SkillInfoModal {
     sk: Skill = new Skill();
@@ -45,7 +49,8 @@ export class SkillInfoModal {
     constructor(private nav: NavController, public dataHelper: DataService, viewCtrl: ViewController, params: NavParams) {
         this.viewCtrl = viewCtrl;
         //debugger;
-        this.sk = params.get("skill");
+        //console.log(params.data);
+        this.sk = params.data;
         // get abilities
         dataHelper.getAbilities().subscribe(
             data => { this.ab = dataHelper.filterByID(data, this.sk.abilityID) },

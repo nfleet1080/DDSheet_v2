@@ -4,7 +4,7 @@ import {Language} from './Language-model'
 import {Die} from './Die-model';
 
 
-export interface AbilityScore {
+export interface ASI {
     id: number;
     bonus: number;
 }
@@ -26,7 +26,7 @@ export interface Subrace {
     id: number;
     name: string;
     description: string;
-    ASI: Array<AbilityScore>;
+    ASI: Array<ASI>;
     traits: Array<Traits>;
     height: Measurement;
     weight: Measurement;
@@ -47,7 +47,7 @@ export class Race {
         public name: string = "Race Name",
         public image: string,
         public description: string,
-        public ASI: Array<AbilityScore>,
+        public ASI: Array<ASI>,
         public age: number,
         public ageDesc: string,
         public alignment: number,

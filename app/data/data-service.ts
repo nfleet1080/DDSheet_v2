@@ -6,7 +6,7 @@ import {AdventuringGear} from './models/Adventuring-gear-model'
 import {Alignment} from './models/Alignment-model';
 import {Armor} from './models/Armor-model';
 import {Die} from './models/Die-model';
-import {Class} from './models/Class-model';
+import {ClassModel} from './models/Class-model';
 import {EquipmentPack} from './models/Equipment-pack-model';
 import {EquipmentType} from './models/Equipment-type-model';
 import {ItemCategory} from './models/Item-category-model';
@@ -24,7 +24,7 @@ export class DataService {
     adventuringGear: Array<AdventuringGear> = [];
     alignments: Array<Alignment> = [];
     armor: Array<Armor> = [];
-    classes: Array<Class> = [];
+    classes: Array<ClassModel> = [];
     equipmentPacks: Array<EquipmentPack> = [];
     equipmentType: Array<EquipmentType> = [];
     itemCategory: Array<ItemCategory> = [];
@@ -47,11 +47,13 @@ export class DataService {
      */
     loadJSONData() {
         return Observable.forkJoin(
-            this.http.get('data/json/abilities.json').map((res: Response) => res.json()),
-            this.http.get('data/json/adventuringGear.json').map((res: Response) => res.json()),
-            this.http.get('data/json/alignments.json').map((res: Response) => res.json()),
-            this.http.get('data/json/armor.json').map((res: Response) => res.json()),
-            this.http.get('data/json/classes.json').map((res: Response) => res.json()),
+            this.http.get('data/json/abilities.json').map((res: Response) => <Ability[]>res.json()),
+            this.http.get('data/json/adventuringGear.json').map((res: Response) => <AdventuringGear[]>res.json()),
+            this.http.get('data/json/alignments.json').map((res: Response) => <Alignment[]>res.json()),
+            this.http.get('data/json/armor.json').map((res: Response) => <Armor[]>res.json()),
+            this.http.get('data/json/classes.json').map((res: Response) => <ClassModel[]>res.json()).map(classes => {
+                return classes.map((cl) => {return new ClassModel(cl.id,cl.name,cl.description,new Die(cl.hitDie.min, cl.hitDie.max, cl.hitDie.count),cl.primaryAbility, cl.savingThrowProficiencies, cl.equipmentTypeProficiencies, cl.armorProficiencies, cl.weaponProficiencies,cl.toolProficiencies,{amount:new Die(cl.startingWealth.amount.min,cl.startingWealth.amount.max,cl.startingWealth.amount.count),multiplier:cl.startingWealth.multiplier},cl.startingEquip,cl.skills, cl.icon, cl.abilitySuggestion, cl.backgroundSuggestion, cl.spellSuggestion)});
+            }),
             this.http.get('data/json/equipmentPacks.json').map((res: Response) => res.json()),
             this.http.get('data/json/equipmentType.json').map((res: Response) => res.json()),
             this.http.get('data/json/itemCategory.json').map((res: Response) => res.json()),
@@ -101,7 +103,7 @@ export class DataService {
     }
     getClasses(){
       return this.http.get('data/json/classes.json')
-          .map(res => <Class[]>res.json())
+          .map(res => <ClassModel[]>res.json())
           //.do(data => console.log(data))
           .catch(this.handleError);
 }

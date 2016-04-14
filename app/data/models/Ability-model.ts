@@ -19,7 +19,19 @@ export class Ability {
     constructor(
         public name: string = "Ability Name",
         public description: string = "Ability Description"
-        ) { }
+    ) { }
+}
+
+export class AbilityScore {
+
+    constructor(
+        public abilityID: number = 1,
+        public value: number = 1
+    ) { }
+
+    public modifier() {
+        return Math.floor((this.value - 10) / 2);
+    }
 }
 
 @Page({
@@ -46,9 +58,7 @@ export class AbilityInfoModal {
     constructor(viewCtrl: ViewController, params: NavParams) {
         this.viewCtrl = viewCtrl;
         //debugger;
-        this.ab.id = params.get('id');
-        this.ab.name = params.get('name');
-        this.ab.description = params.get('description');
+        this.ab = params.data;
     }
 
     close() {

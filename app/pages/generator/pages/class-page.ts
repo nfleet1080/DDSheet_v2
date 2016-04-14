@@ -1,7 +1,7 @@
 import {Page, NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {Character} from '../../../data/models/Character-model';
-import {Class} from '../../../data/models/class-model';
+import {ClassModel} from '../../../data/models/Class-model';
 import {ClassReviewPage} from './class-review-page';
 
 @Page({
@@ -25,7 +25,7 @@ import {ClassReviewPage} from './class-review-page';
   providers: [DataService]
 })
 export class ClassPage {
-classes:Array<Class> = [];
+classes:Array<ClassModel> = [];
 tmpChr: Character;
 
   constructor(private dataHelper: DataService, private nav: NavController, navParams: NavParams) {
@@ -43,7 +43,7 @@ tmpChr: Character;
         //, () => console.log('')
         );
   }
-  selectClass(selClass:Class){
+  selectClass(selClass:ClassModel){
     this.tmpChr.Classes = [];
     this.tmpChr.Classes.push(selClass.id);
     this.nav.push(ClassReviewPage, {
