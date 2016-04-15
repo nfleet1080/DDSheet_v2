@@ -2,7 +2,7 @@ import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController}
 import {DataService} from '../../../data/data-service';
 import {CharacterService} from '../../../data/character-service';
 import {Character} from '../../../data/models/Character-model';
-import {ClassModel, AbilitySuggestionModal} from '../../../data/models/Class-model';
+import {ClassModel} from '../../../data/models/Class-model';
 import {Ability, AbilityScore, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Race, Subrace, ASI} from '../../../data/models/race-model';
 import {Die} from '../../../data/models/Die-model';
@@ -26,7 +26,14 @@ interface AbilityDisplay {
     racialBonus: number;
 }
 
-
+interface PointCosts {
+    point: number;
+    cost: number;
+}
+interface AbilityScoreDef {
+    abilityID: number;
+    value: number;
+}
 
 @Page({
     template: `
@@ -69,19 +76,44 @@ interface AbilityDisplay {
               </ion-col>
           </ion-row>
           
-                <button fab fab-left style="position:relative" secondary  (click)="roll()">Reroll</button>
-                <button fab fab-center style="position:relative" light  (click)="suggest()">Suggestion</button>
-        <button fab fab-right style="position:relative;float-right" primary (click)="rollHelp()"><ion-icon name="help"></ion-icon></button>
+                <button secondary  (click)="roll()">Reroll</button>
+        <button primary (click)="rollHelp()"><ion-icon name="help"></ion-icon></button>
 
       </ion-card-content>
       </ion-card>
 
   </template>
 
-      <div  *ngSwitchWhen="'quick'">quick</div>
+      <template  [ngSwitchWhen]="'quick'">
+      <ion-card>
+    <ion-card-content>
+    Scores ordered from highest value to lowest.  Drag the Abilities to re-position.
+          <ion-row>
+              <ion-col width-25 class="rollCol">
+                  <ion-list no-lines>
+                    <ion-item *ngFor="#result of quickScores"><ion-badge highlight>{{result}}</ion-badge></ion-item>
+                  </ion-list>
+              </ion-col>
+              <ion-col width-75>
+                  <div [dragula]='"quickAbilityOrder"'   [dragulaModel]='quickAbilities'>
+                      <div class="abilities" *ngFor="#ab of quickAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
+                      </div>
+              </ion-col>
+          </ion-row>
+              <button primary (click)="quickHelp()"><ion-icon name="help"></ion-icon></button>
+</ion-card-content>
+      </ion-card>
+      </template>
     <div  *ngSwitchWhen="'buy'">point buy</div>
       <div  *ngSwitchWhen="'manual'">manual entry</div>
       </div>
+      <ion-card *ngFor="#class of charClasses">
+       <ion-item>
+            <h2>{{class.name}} Quick Build</h2>
+        </ion-item>
+        <ion-card-content [innerHTML]="class.abilitySuggestion">
+        </ion-card-content>
+      </ion-card>
   </ion-content>
   `,
     providers: [DataService, CharacterService, DragulaService],
@@ -93,18 +125,47 @@ export class AbilityScorePage {
     tmpChr: Character;
     abilities: Array<AbilityDisplay> = [];
     rollAbilities: Array<AbilityDisplay> = [];
+    quickAbilities: Array<AbilityDisplay> = [];
     race: Race;
     subrace: Subrace;
     charClasses: Array<ClassModel> = [];
-    rollResults: Array<number> = [];
-
+    rollResults: Array<number> = [0,0,0,0,0,0];
+    quickScores: Array<number> = [15, 14, 13, 12, 10, 8];
+    // numbers represent IDs
+    points: number = 27;
+    pointBuy: Array<AbilityScoreDef> = [
+        { abilityID: 1, value: 8 },
+        { abilityID: 2, value: 8 },
+        { abilityID: 3, value: 8 },
+        { abilityID: 4, value: 8 },
+        { abilityID: 5, value: 8 },
+        { abilityID: 6, value: 8 },
+    ];
+    manual: Array<AbilityScoreDef> = [
+        { abilityID: 1, value: null },
+        { abilityID: 2, value: null },
+        { abilityID: 3, value: null },
+        { abilityID: 4, value: null },
+        { abilityID: 5, value: null },
+        { abilityID: 6, value: null },
+    ];
+    pointCostValues: Array<PointCosts> = [
+        { point: 8, cost: 0 },
+        { point: 9, cost: 1 },
+        { point: 10, cost: 2 },
+        { point: 11, cost: 3 },
+        { point: 12, cost: 4 },
+        { point: 13, cost: 5 },
+        { point: 14, cost: 7 },
+        { point: 15, cost: 9 },
+    ];
     constructor(private dragulaService: DragulaService, private dataHelper: DataService, private nav: NavController, navParams: NavParams) {
         this.tmpChr = navParams.get('tempCharacter');
 
         // get race and ability data (to show abilities and bonuses)
         this.getData();
         // perform initial roll
-        this.roll();
+        //this.roll();
 
         dragulaService.drag.subscribe((value) => {
             //console.log(value);
@@ -151,56 +212,12 @@ export class AbilityScorePage {
                 // set the main class object once all data is available
                 //this.selectedClass = this.navParams.get('selClass');
                 //console.info(this.selectedClass.equipmentTypeProficiencies);
-                this.rollAbilities = this.abilities.slice(); // clear the array
+                this.rollAbilities = this.abilities.slice();
+                this.quickAbilities = this.abilities.slice();
             }
         );
-        /*// first get race data
-        this.dataHelper.getRaces().subscribe(
-            data => {
-                this.race = this.dataHelper.filterByID(data, this.tmpChr.RaceID);
-                this.subrace = this.dataHelper.filterByID(this.race.subraces, this.tmpChr.SubraceID);
-
-                // now get abilities since race data is available
-                this.loadAbilities();
-            },
-            error => console.error(error)
-            //,() => console.info(this.abilities)
-        );*/
     }
 
-    /*loadAbilities() {
-        //AbilityDisplay
-
-        // load ability data
-        this.dataHelper.getAbilities().subscribe(
-            data => {
-                data.forEach(ability => {
-                    //debugger;
-                    var bonus: number = 0;
-                    var abBonus: AbilityDisplay;
-                    // see if the ability is listed in the race's ability increase bonus
-                    var tmpA: AbilityScore = this.dataHelper.filterByID(this.race.ASI, ability.id);
-                    if (!tmpA) {
-                        // no match in racial ability list, so check the subrace
-                        tmpA = this.dataHelper.filterByID(this.subrace.ASI, ability.id);
-                    }
-                    if (tmpA) {
-                        // found a bonus
-                        bonus = tmpA.bonus;
-                    }
-                    abBonus = {
-                        ability: ability,
-                        racialBonus: bonus
-                    };
-                    this.abilities.push(abBonus);
-                });
-            },
-            error => console.error(error)
-            , () => {
-                this.rollAbilities = this.abilities.slice()
-            }
-        );
-    }*/
 
     roll() {
         var dieHelper: Die = new Die(1, 6, 4);
@@ -226,16 +243,27 @@ export class AbilityScorePage {
         this.rollResults.sort(function (a, b) { return b - a });
     }
 
-    suggest() {
-        let modal = Modal.create(AbilitySuggestionModal, this.charClasses);
-        this.nav.present(modal);
+    pointCost(point: number): PointCosts {
+        return this.pointCostValues.filter(item => item.point === point)[0];
     }
-    rollHelp() {
+    calculatePointTotal(): number {
+        let runningTotal: number = this.points;
+        this.pointBuy.forEach(score => {
+            runningTotal -= this.pointCost(score.value).cost;
+        });
+        return runningTotal;
+    }
+
+    rollHelp(): void {
         let modal = Modal.create(RollInfoModal);
         this.nav.present(modal);
     }
+    quickHelp(): void {
+        let modal = Modal.create(QuickInfoModal);
+        this.nav.present(modal);
+    }
 
-    next() {
+    next(): void {
         // determine which ability score page is active and use those scores
 
         this.nav.push(BackgroundSelectionPage, { tempCharacter: this.tmpChr });
@@ -255,27 +283,51 @@ export class AbilityScorePage {
   <ion-content padding class="cards-bg">
     <ion-card>
         <ion-card-content>
-        <p>You generate your character's six ability scores
-randomly. This is done by calculating four 6-sided dice rolls and recording the total of
-the highest three dice. This is done five more times, so that you have six numbers available, which are ordered here 
+        <p>This is a random generation of your character's six ability scores. This is done by simulating four 6-sided dice rolls and recording the total of
+the highest three dice. This is done six times (one for each ability) and ordered here 
 from highest to lowest.</p>
         </ion-card-content>
     </ion-card>
   </ion-content>`
 })
 export class RollInfoModal {
-    ab: Ability = new Ability();
     viewCtrl: ViewController;
 
     constructor(viewCtrl: ViewController, params: NavParams) {
         this.viewCtrl = viewCtrl;
-        //debugger;
-        this.ab.id = params.get('id');
-        this.ab.name = params.get('name');
-        this.ab.description = params.get('description');
     }
 
-    close() {
+    close(): void {
         this.viewCtrl.dismiss();
     }
 }
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Static Scores</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+        <p>If you want to save time or don’t like the idea of randomly determining ability scores, you can use the following scores instead: 15, 14, 13, 12, 10, 8.</p>
+        </ion-card-content>
+    </ion-card>
+  </ion-content>`
+})
+export class QuickInfoModal {
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+    }
+
+    close(): void {
+        this.viewCtrl.dismiss();
+    }
+}
+

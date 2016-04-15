@@ -75,41 +75,7 @@ export class ClassModel {
 @Page({
     template: `
     <ion-toolbar>
-  <ion-title>Quick Build</ion-title>
-  <ion-buttons end>
-      <button danger (click)="close()">
-    <ion-icon name="close-circle"></ion-icon>
-</button>
-</ion-buttons>
-</ion-toolbar>
-  <ion-content padding class="cards-bg">
-    <ion-card *ngFor="#class of cl">
-        <ion-item>
-            <h2>{{class.name}}</h2>
-        </ion-item>
-        <ion-card-content [innerHTML]="class.abilitySuggestion">
-        </ion-card-content>
-    </ion-card>
-  </ion-content>`
-})
-export class AbilitySuggestionModal {
-    cl: Array<ClassModel> = null;
-    viewCtrl: ViewController;
-
-    constructor(viewCtrl: ViewController, params: NavParams) {
-        this.viewCtrl = viewCtrl;
-        //debugger;
-        this.cl = params.data;
-    }
-
-    close() {
-        this.viewCtrl.dismiss();
-    }
-}
-@Page({
-    template: `
-    <ion-toolbar>
-  <ion-title>{{cl.name}} Quick Build</ion-title>
+  <ion-title>{{cl.name}} Spell Suggestion</ion-title>
   <ion-buttons end>
       <button danger (click)="close()">
     <ion-icon name="close-circle"></ion-icon>
