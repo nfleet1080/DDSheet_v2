@@ -3,6 +3,7 @@ import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {CharactersPage} from './pages/characters/characters';
 import {CharacterGenerator} from './pages/generator/generator-main';
+import 'es6-shim';
 
 @App({
   templateUrl: 'build/app.html',

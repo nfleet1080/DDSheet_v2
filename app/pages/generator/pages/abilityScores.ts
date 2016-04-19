@@ -76,7 +76,7 @@ interface AbilityScoreDef {
               </ion-col>
           </ion-row>
           
-                <button secondary  (click)="roll()">Reroll</button>
+                <button secondary  (click)="roll()"><template [ngIf]="rollResults[0] > 0">Reroll</template><template [ngIf]="rollResults[0] == 0">Roll</template></button>
         <button primary (click)="rollHelp()"><ion-icon name="help"></ion-icon></button>
 
       </ion-card-content>
