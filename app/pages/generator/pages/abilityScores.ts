@@ -31,7 +31,7 @@ interface PointCosts {
     cost: number;
 }
 interface AbilityScoreDef {
-    abilityID: number;
+    ability: AbilityDisplay;
     value: number;
 }
 
@@ -104,7 +104,25 @@ interface AbilityScoreDef {
 </ion-card-content>
       </ion-card>
       </template>
-    <div  *ngSwitchWhen="'buy'">point buy</div>
+    <template [ngSwitchWhen]="'buy'">
+        <ion-card>
+            <ion-card-content>
+            <ion-badge [attr.secondary]="calculatePointTotal() > 0 ? true : null" [attr.danger]="calculatePointTotal() == 0 ? true : null">{{calculatePointTotal()}}</ion-badge> points available
+            </ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="#buyItem of pointBuy;#i = index">
+                    <button (click)="addPoint(i)" [attr.disabled]="buyItem.value == 15 || notEnoughPoints(buyItem.value)">
+                    <ion-icon name="add"></ion-icon>
+                    </button>
+                    <button light>{{buyItem.value}}</button>
+                    <button (click)="subtractPoint(i)" [attr.disabled]="buyItem.value == 8">
+                    <ion-icon name="remove"></ion-icon>
+                    </button>
+                    <button clear dark>{{buyItem.ability.ability.name}}&nbsp;<ion-badge *ngIf="buyItem.ability.racialBonus > 0" primary>+{{buyItem.ability.racialBonus}}</ion-badge></button>
+                    </ion-buttons>
+            </ion-list>
+        </ion-card>
+    </template>
       <div  *ngSwitchWhen="'manual'">manual entry</div>
       </div>
       <ion-card *ngFor="#class of charClasses">
@@ -129,25 +147,25 @@ export class AbilityScorePage {
     race: Race;
     subrace: Subrace;
     charClasses: Array<ClassModel> = [];
-    rollResults: Array<number> = [0,0,0,0,0,0];
+    rollResults: Array<number> = [0, 0, 0, 0, 0, 0];
     quickScores: Array<number> = [15, 14, 13, 12, 10, 8];
     // numbers represent IDs
     points: number = 27;
     pointBuy: Array<AbilityScoreDef> = [
-        { abilityID: 1, value: 8 },
+        /*{ abilityID: 1, value: 8 },
         { abilityID: 2, value: 8 },
         { abilityID: 3, value: 8 },
         { abilityID: 4, value: 8 },
         { abilityID: 5, value: 8 },
-        { abilityID: 6, value: 8 },
+        { abilityID: 6, value: 8 },*/
     ];
     manual: Array<AbilityScoreDef> = [
-        { abilityID: 1, value: null },
+        /*{ abilityID: 1, value: null },
         { abilityID: 2, value: null },
         { abilityID: 3, value: null },
         { abilityID: 4, value: null },
         { abilityID: 5, value: null },
-        { abilityID: 6, value: null },
+        { abilityID: 6, value: null },*/
     ];
     pointCostValues: Array<PointCosts> = [
         { point: 8, cost: 0 },
@@ -214,11 +232,19 @@ export class AbilityScorePage {
                 //console.info(this.selectedClass.equipmentTypeProficiencies);
                 this.rollAbilities = this.abilities.slice();
                 this.quickAbilities = this.abilities.slice();
+                
+                this.abilities.forEach(ability => {
+                    this.pointBuy.push({ability:ability, value:8});
+                    this.manual.push({ability:ability, value:null});
+                });
             }
         );
     }
 
 
+    /**
+     * Roll 4d6 scores
+     */
     roll() {
         var dieHelper: Die = new Die(1, 6, 4);
         // clear the existing roll results
@@ -253,7 +279,32 @@ export class AbilityScorePage {
         });
         return runningTotal;
     }
-
+    notEnoughPoints(currentValue:number) {
+        // determine if there are enough points to increase
+        // first figure out the cost of the next available value
+        let valToIncrease:number = currentValue + 1;
+        let newcost:number = 0;
+        let currentcost:number = this.pointCost(currentValue).cost;
+        if (valToIncrease < 16) {
+            newcost = this.pointCost(valToIncrease).cost;
+        } else {
+            return true;
+        }
+        // look at the current remaining points...
+        var currentPoints:number = this.calculatePointTotal();
+        if (currentPoints - (newcost - currentcost) >= 0) {
+            return null;
+        } else {
+            return true;
+        }
+    };
+    addPoint(index:number){
+        this.pointBuy[index].value += 1;
+    }
+    subtractPoint(index:number){
+        this.pointBuy[index].value -= 1;
+    }
+    
     rollHelp(): void {
         let modal = Modal.create(RollInfoModal);
         this.nav.present(modal);
