@@ -1,5 +1,10 @@
 // http://ionicframework.com/docs/v2/theming/
 
+// Ionic Shared Functions
+// --------------------------------------------------
+// Makes Ionic Sass functions available to your App
+
+@import 'globals.core';
 
 // App Shared Variables
 // --------------------------------------------------
@@ -21,23 +26,24 @@
 // are different per mode.
 
 $colors: (
-primary: (
-  base: #155765,
-  contrast: #f5f5f5
-),
-secondary: (
-  base: #57652a,
-  contrast: #ffffff
-),
-  danger:     #b56357,
-  light:      #e8e8e8,
-  dark:       #1d2731,
-  favorite:   #69BB7B,
-  highlight: (
-    base:#4d2c3d,
+  primary: (
+    base: #155765,
+    contrast: #f5f5f5
+  ),
+  secondary: (
+    base: #57652a,
     contrast: #ffffff
+  ),
+    danger:     #b56357,
+    light:      #e8e8e8,
+    dark:       #1d2731,
+    favorite:   #69BB7B,
+    highlight: (
+      base:#4d2c3d,
+      contrast: #ffffff
     ),
-    card-bg:#d7cec7
+    card-bg:#d7cec7,
+    warn:#ffc65d
 );
 //highlight: #948C75
 

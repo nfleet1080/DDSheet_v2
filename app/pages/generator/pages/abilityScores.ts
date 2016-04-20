@@ -42,6 +42,12 @@ interface AbilityScoreDef {
   <ion-icon name="menu"></ion-icon>
   </button>
   <ion-title>Ability Scores</ion-title>
+  <ion-buttons end>
+    <button secondary (click)="next()">
+    Next
+  <ion-icon name="arrow-forward"></ion-icon>
+</button>
+</ion-buttons>
   </ion-navbar>
   <ion-content padding class="cards-bg">
   <ion-segment [(ngModel)]="method">
@@ -58,11 +64,13 @@ interface AbilityScoreDef {
       Manual
     </ion-segment-button>
   </ion-segment>
+  
   <div [ngSwitch]="method">
+  
       <template  [ngSwitchWhen]="'roll'">
     <ion-card>
     <ion-card-content>
-    Rolls ordered from highest value to lowest.  Drag the Abilities to re-position.
+    <button primary (click)="rollHelp()" style="float:right"><ion-icon name="help"></ion-icon></button>Rolls ordered from highest value to lowest.  Drag the Abilities to re-position.
           <ion-row>
               <ion-col width-25 class="rollCol">
                   <ion-list no-lines>
@@ -75,19 +83,15 @@ interface AbilityScoreDef {
                       </div>
               </ion-col>
           </ion-row>
-          
-                <button secondary  (click)="roll()"><template [ngIf]="rollResults[0] > 0">Reroll</template><template [ngIf]="rollResults[0] == 0">Roll</template></button>
-        <button primary (click)="rollHelp()"><ion-icon name="help"></ion-icon></button>
-
+                <button secondary block (click)="roll()"><template [ngIf]="rollResults[0] > 0">Reroll</template><template [ngIf]="rollResults[0] == 0">Roll</template></button>
       </ion-card-content>
       </ion-card>
-
   </template>
 
       <template  [ngSwitchWhen]="'quick'">
       <ion-card>
     <ion-card-content>
-    Scores ordered from highest value to lowest.  Drag the Abilities to re-position.
+    <button primary (click)="quickHelp()" style="float:right"><ion-icon name="help"></ion-icon></button>Scores ordered from highest value to lowest.  Drag the Abilities to re-position.
           <ion-row>
               <ion-col width-25 class="rollCol">
                   <ion-list no-lines>
@@ -100,31 +104,43 @@ interface AbilityScoreDef {
                       </div>
               </ion-col>
           </ion-row>
-              <button primary (click)="quickHelp()"><ion-icon name="help"></ion-icon></button>
 </ion-card-content>
       </ion-card>
       </template>
+      
     <template [ngSwitchWhen]="'buy'">
         <ion-card>
             <ion-card-content>
-            <ion-badge [attr.secondary]="calculatePointTotal() > 0 ? true : null" [attr.danger]="calculatePointTotal() == 0 ? true : null">{{calculatePointTotal()}}</ion-badge> points available
+            <button primary (click)="buyHelp()" style="float:right"><ion-icon name="help"></ion-icon></button><ion-badge [class.secondary]='calculatePointTotal() > 10' [class.warn]='calculatePointTotal() > 0 && calculatePointTotal() <= 10' [class.danger]="calculatePointTotal() == 0">{{calculatePointTotal()}}</ion-badge> points available
             </ion-card-content>
             <ion-list>
                 <ion-item *ngFor="#buyItem of pointBuy;#i = index">
-                    <button (click)="addPoint(i)" [attr.disabled]="buyItem.value == 15 || notEnoughPoints(buyItem.value)">
-                    <ion-icon name="add"></ion-icon>
+                    <button (click)="addPoint(i)" [attr.disabled]="buyItem.value == 15 || notEnoughPoints(buyItem.value)? true : null">
+                    <ion-icon name="add" style="padding:0 .5em"></ion-icon>
                     </button>
-                    <button light>{{buyItem.value}}</button>
-                    <button (click)="subtractPoint(i)" [attr.disabled]="buyItem.value == 8">
-                    <ion-icon name="remove"></ion-icon>
+                    <button light class="valueBtn">{{buyItem.value}}</button>
+                    <button (click)="subtractPoint(i)" [attr.disabled]="buyItem.value == 8? true : null">
+                    <ion-icon name="remove" style="padding:0 .5em"></ion-icon>
                     </button>
                     <button clear dark>{{buyItem.ability.ability.name}}&nbsp;<ion-badge *ngIf="buyItem.ability.racialBonus > 0" primary>+{{buyItem.ability.racialBonus}}</ion-badge></button>
-                    </ion-buttons>
+                </ion-item>
             </ion-list>
         </ion-card>
     </template>
-      <div  *ngSwitchWhen="'manual'">manual entry</div>
+    
+      <template  [ngSwitchWhen]="'manual'">
+      <ion-card>
+      <ion-card-content>This form is provided if you want to enter in your own values.</ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="#entry of manual">
+            <ion-label floating>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
+            <ion-input type="text" [(ngModel)]="entry.value"></ion-input>
+        </ion-item>
+      </ion-list>
+      </ion-card>
+      </template>
       </div>
+      
       <ion-card *ngFor="#class of charClasses">
        <ion-item>
             <h2>{{class.name}} Quick Build</h2>
@@ -313,10 +329,35 @@ export class AbilityScorePage {
         let modal = Modal.create(QuickInfoModal);
         this.nav.present(modal);
     }
+    buyHelp(): void {
+        let modal = Modal.create(BuyInfoModal);
+        this.nav.present(modal);
+    }
 
     next(): void {
+        debugger;
+        let finalScores:Array<AbilityScoreDef> = [];
         // determine which ability score page is active and use those scores
-
+        switch (this.method) {
+            case "roll":
+                this.rollAbilities.forEach((ability,index) =>  finalScores.push({ability:ability,value:this.rollResults[index]}));
+                break;
+            case "quick":
+                this.quickAbilities.forEach((ability,index) =>  finalScores.push({ability:ability,value:this.quickScores[index]}));
+                break;
+            case "buy":
+                this.pointBuy.forEach(abilDef => finalScores.push(abilDef));
+                break;
+            case "manual":
+                 this.manual.forEach(abilDef => finalScores.push(abilDef));
+                break;
+        
+            default:
+                break;
+        }
+        // set the tempCharacter's abilities
+        this.tmpChr.Abilities = finalScores.slice();
+        
         this.nav.push(BackgroundSelectionPage, { tempCharacter: this.tmpChr });
     }
 }
@@ -382,3 +423,86 @@ export class QuickInfoModal {
     }
 }
 
+@Page({
+    template: `
+    <ion-toolbar>
+  <ion-title>Point Buy (Variant)</ion-title>
+  <ion-buttons end>
+      <button danger (click)="close()">
+    <ion-icon name="close-circle"></ion-icon>
+</button>
+</ion-buttons>
+</ion-toolbar>
+  <ion-content padding class="cards-bg">
+    <ion-card>
+        <ion-card-content>
+        <p>
+        At your Dungeon Master’s option, you can use this
+variant for determining your ability scores. The method
+described here allows you to build a character with a set
+of ability scores you choose individually.</p>
+<p>You have 27 points to spend on your ability scores.
+The cost of each score is shown on the Ability Score
+Point Cost table (below). For example, a score of 14 costs 7
+points. Using this method, 15 is the highest ability score
+you can end up with, before applying racial increases.
+You can’t have a score lower than 8.</p>
+<p>This method of determining ability scores enables
+you to create a set of three high numbers and three low
+ones (15, 15, 15, 8, 8, 8), a set of numbers that are above
+average and nearly equal (13, 13, 13, 12, 12, 12), or any
+set of numbers between those extremes.
+        </p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+    <ion-row center primary>
+        <ion-col>Score</ion-col>
+        <ion-col>Cost</ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col>8</ion-col>
+        <ion-col>0</ion-col>
+    </ion-row>
+    <ion-row center light>
+        <ion-col>9</ion-col>
+        <ion-col>1</ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col>10</ion-col>
+        <ion-col>2</ion-col>
+    </ion-row>
+    <ion-row center light>
+        <ion-col>11</ion-col>
+        <ion-col>3</ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col>12</ion-col>
+        <ion-col>4</ion-col>
+    </ion-row>
+    <ion-row center light>
+        <ion-col>13</ion-col>
+        <ion-col>6</ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col>14</ion-col>
+        <ion-col>7</ion-col>
+    </ion-row>
+    <ion-row center light>
+        <ion-col>15</ion-col>
+        <ion-col>9</ion-col>
+    </ion-row>
+    </ion-card>
+  </ion-content>`
+})
+export class BuyInfoModal {
+    viewCtrl: ViewController;
+
+    constructor(viewCtrl: ViewController, params: NavParams) {
+        this.viewCtrl = viewCtrl;
+    }
+
+    close(): void {
+        this.viewCtrl.dismiss();
+    }
+}

@@ -31,12 +31,15 @@ export class CharactersPage {
                 this.classes = data;
             },
             error => console.error(error)
-            , () => this.characters = [
+            , () => {
+            this.characters = [
                 new Character(),
                 new Character(),
                 new Character()
-            ]
-            );
+            ];
+                //console.info(this.characters);
+            }
+        );
 
     }
 

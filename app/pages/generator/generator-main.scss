@@ -12,7 +12,19 @@ ion-list.raceList {
 /*.toolbar-background {
     //background:#f3f3f3;
 }*/
-
+.danger{
+    background-color: color($colors, danger, base);
+    color: color($colors, light);
+}
+.warn{
+    background-color: color($colors, warn, base);
+    color: color($colors, dark);
+}
+.secondary{
+    background-color: color($colors, secondary, base);
+    color: color($colors, secondary, contrast);
+}
+.valueBtn{width:28px}
 .abilities.gu-transit {
     background-color: color($colors, secondary, base);
     color: color($colors, secondary, contrast);
