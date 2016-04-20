@@ -335,7 +335,6 @@ export class AbilityScorePage {
     }
 
     next(): void {
-        debugger;
         let finalScores:Array<AbilityScoreDef> = [];
         // determine which ability score page is active and use those scores
         switch (this.method) {

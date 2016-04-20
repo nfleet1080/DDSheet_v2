@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "Acolyte",
+        "description": "<p>You have spent your life in the service of a temple to a specific god or pantheon of gods. You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. You are not necessarily a cleric-performing sacred rites is not the same thing as channeling divine power.</p><p>Choose a god, a pantheon o f gods, or some other quasi-divine being and work with your DM to detail the nature of your religious service. Were you a lesser functionary in a temple, raised from childhood to assist the priests in the sacred rites? Or were you a high priest who suddenly experienced a call to serve your god in a different way? Perhaps you were the leader of a small cult outside of any established temple structure, or even an occult group that served a fiendish master that you now deny.</p>",
         "proficiencies": [
             {
                 "type": "skill",
@@ -15,100 +16,177 @@
         "extraLanguages": 2,
         "equipment": [
             {
-                "Type":"Category",
-                "id":4,
-                "ifProficient":false,
-                "qty":1
+                "Type": "Category",
+                "id": 4,
+                "ifProficient": false,
+                "qty": 1
             },
             {
-                "Type":"Gear",
-                "id":108,
-                "ifProficient":false,
-                "qty":1
+                "Type": "Gear",
+                "id": 108,
+                "ifProficient": false,
+                "qty": 1
             },
             {
-                "Type":"Gear",
-                "id":109,
-                "ifProficient":false,
-                "qty":5
+                "Type": "Gear",
+                "id": 109,
+                "ifProficient": false,
+                "qty": 5
             },
             {
-                "Type":"Gear",
-                "id":104,
-                "ifProficient":false,
-                "qty":1
+                "Type": "Gear",
+                "id": 104,
+                "ifProficient": false,
+                "qty": 1
             },
             {
-                "Type":"Gear",
-                "id":33,
-                "ifProficient":false,
-                "qty":1
+                "Type": "Gear",
+                "id": 33,
+                "ifProficient": false,
+                "qty": 1
             },
             {
-                "Type":"Gear",
-                "id":77,
-                "ifProficient":false,
-                "qty":1
+                "Type": "Gear",
+                "id": 77,
+                "ifProficient": false,
+                "qty": 1
             }
-            ],
-        "money":1500,
+        ],
+        "money": 1500,
         "features": [
             {
-                "id":1,
-                "name":"Shelter of the Faithful",
-                "description":"<p>As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of  your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.</p><p>You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.</p>"
+                "id": 1,
+                "name": "Shelter of the Faithful",
+                "description": "<p>As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of  your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.</p><p>You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.</p>"
             }
-            ],
+        ],
         "characteristics": [
             {
-                "name":"Personality Trait",
-                "description" : "Acolytes are shaped by their experience in temples or other religious communities. Their study of the history and tenets of their faith and their relationships to temples, shrines, or hierarchies affect their mannerisms and ideals. Their flaws might be some hidden hypocrisy or heretical idea, or an ideal or bond taken to an extreme.",
-                "table":[
-                    {"roll":1,"description":"I idolize a particular hero of my faith, and constantly refer to that person’s deeds and example."},
-                    {"roll":2,"description":"I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."},
-                    {"roll":3,"description":"I see omens in every event and action. The gods try to speak to us, we just need to listen"},
-                    {"roll":4,"description":"Nothing can shake my optimistic attitude."},
-                    {"roll":5,"description":"I quote (or misquote) sacred texts and proverbs in almost every situation."},
-                    {"roll":6,"description":"I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods."},
-                    {"roll":7,"description":"I've enjoyed fine food, drink, and high society among my temple’s elite. Rough living grates on me."},
-                    {"roll":8,"description":"I’ve spent so long in the temple that I have little practical experience dealing with people in the outside world."}
+                "name": "Personality Trait",
+                "description": "Acolytes are shaped by their experience in temples or other religious communities. Their study of the history and tenets of their faith and their relationships to temples, shrines, or hierarchies affect their mannerisms and ideals. Their flaws might be some hidden hypocrisy or heretical idea, or an ideal or bond taken to an extreme.",
+                "table": [
+                    {
+                        "roll": 1,
+                        "description": "I idolize a particular hero of my faith, and constantly refer to that person’s deeds and example."
+                    },
+                    {
+                        "roll": 2,
+                        "description": "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
+                    },
+                    {
+                        "roll": 3,
+                        "description": "I see omens in every event and action. The gods try to speak to us, we just need to listen"
+                    },
+                    {
+                        "roll": 4,
+                        "description": "Nothing can shake my optimistic attitude."
+                    },
+                    {
+                        "roll": 5,
+                        "description": "I quote (or misquote) sacred texts and proverbs in almost every situation."
+                    },
+                    {
+                        "roll": 6,
+                        "description": "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods."
+                    },
+                    {
+                        "roll": 7,
+                        "description": "I've enjoyed fine food, drink, and high society among my temple’s elite. Rough living grates on me."
+                    },
+                    {
+                        "roll": 8,
+                        "description": "I’ve spent so long in the temple that I have little practical experience dealing with people in the outside world."
+                    }
                 ]
             },
             {
-                "name":"Ideal",
-                "description" : null,
-                "table":[
-                    {"roll":1,"description":"<strong>Tradition.</strong> The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)"},
-                    {"roll":2,"description":"<strong>Charity.</strong> I always try to help those in need, no matter what the personal cost. (Good)"},
-                    {"roll":3,"description":"<strong>Change.</strong> We must help bring about the changes the gods are constantly working in the world. (Chaotic)"},
-                    {"roll":4,"description":"<strong>Power.</strong> I hope to one day rise to the top of my faith’s religious hierarchy. (Lawful)"},
-                    {"roll":5,"description":"<strong>Faith.</strong> I trust that my deity will guide my actions, I have faith that if I work hard, things will go well. (Lawful)"},
-                    {"roll":6,"description":"<strong>Aspiration.</strong> I seek to prove myself worthy of my god’s favor by matching my actions against his or her teachings. (Any)"}
+                "name": "Ideal",
+                "description": null,
+                "table": [
+                    {
+                        "roll": 1,
+                        "description": "<strong>Tradition.</strong> The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)"
+                    },
+                    {
+                        "roll": 2,
+                        "description": "<strong>Charity.</strong> I always try to help those in need, no matter what the personal cost. (Good)"
+                    },
+                    {
+                        "roll": 3,
+                        "description": "<strong>Change.</strong> We must help bring about the changes the gods are constantly working in the world. (Chaotic)"
+                    },
+                    {
+                        "roll": 4,
+                        "description": "<strong>Power.</strong> I hope to one day rise to the top of my faith’s religious hierarchy. (Lawful)"
+                    },
+                    {
+                        "roll": 5,
+                        "description": "<strong>Faith.</strong> I trust that my deity will guide my actions, I have faith that if I work hard, things will go well. (Lawful)"
+                    },
+                    {
+                        "roll": 6,
+                        "description": "<strong>Aspiration.</strong> I seek to prove myself worthy of my god’s favor by matching my actions against his or her teachings. (Any)"
+                    }
                 ]
             },
             {
-                "name":"Bond",
-                "description" : null,
-                "table":[
-                    {"roll":1,"description":"I would die to recover an ancient relic of my faith that was lost long ago."},
-                    {"roll":2,"description":"I will someday get revenge on the corrupt temple hierarchy who branded me a heretic."},
-                    {"roll":3,"description":"I owe my life to the priest who took me in when my parents died."},
-                    {"roll":4,"description":"Everything I do is for the common people."},
-                    {"roll":5,"description":"I will do anything to protect the temple where I served."},
-                    {"roll":6,"description":"I seek to preserve a sacred text that my enemies consider heretical and seek to destroy."}
-
+                "name": "Bond",
+                "description": null,
+                "table": [
+                    {
+                        "roll": 1,
+                        "description": "I would die to recover an ancient relic of my faith that was lost long ago."
+                    },
+                    {
+                        "roll": 2,
+                        "description": "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic."
+                    },
+                    {
+                        "roll": 3,
+                        "description": "I owe my life to the priest who took me in when my parents died."
+                    },
+                    {
+                        "roll": 4,
+                        "description": "Everything I do is for the common people."
+                    },
+                    {
+                        "roll": 5,
+                        "description": "I will do anything to protect the temple where I served."
+                    },
+                    {
+                        "roll": 6,
+                        "description": "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy."
+                    }
                 ]
             },
             {
-                "name":"Flaw",
-                "description" : null,
-                "table":[
-                    {"roll":1,"description":"I judge others harshly, and myself even more severely."},
-                    {"roll":2,"description":"I put too much trust in those who wield power within my temple’s hierarchy."},
-                    {"roll":3,"description":"My piety sometimes leads me to blindly trust those that profess faith in my god."},
-                    {"roll":4,"description":"I am inflexible in my thinking."},
-                    {"roll":5,"description":"I am suspicious of strangers and expect the worst of them."},
-                    {"roll":6,"description":"Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."}
+                "name": "Flaw",
+                "description": null,
+                "table": [
+                    {
+                        "roll": 1,
+                        "description": "I judge others harshly, and myself even more severely."
+                    },
+                    {
+                        "roll": 2,
+                        "description": "I put too much trust in those who wield power within my temple’s hierarchy."
+                    },
+                    {
+                        "roll": 3,
+                        "description": "My piety sometimes leads me to blindly trust those that profess faith in my god."
+                    },
+                    {
+                        "roll": 4,
+                        "description": "I am inflexible in my thinking."
+                    },
+                    {
+                        "roll": 5,
+                        "description": "I am suspicious of strangers and expect the worst of them."
+                    },
+                    {
+                        "roll": 6,
+                        "description": "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
+                    }
                 ]
             }
         ],
@@ -118,6 +196,7 @@
     {
         "id": 2,
         "name": "Charlatan",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -126,10 +205,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -138,6 +215,7 @@
     {
         "id": 3,
         "name": "Criminal",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -146,10 +224,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -158,6 +234,7 @@
     {
         "id": 4,
         "name": "Entertainer",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -166,10 +243,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -178,6 +253,7 @@
     {
         "id": 5,
         "name": "Folk Hero",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -186,10 +262,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -198,6 +272,7 @@
     {
         "id": 6,
         "name": "Guild Artisan",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -206,10 +281,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -218,6 +291,7 @@
     {
         "id": 7,
         "name": "Hermit",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -226,10 +300,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -238,6 +310,7 @@
     {
         "id": 8,
         "name": "Noble",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -246,10 +319,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -258,6 +329,7 @@
     {
         "id": 9,
         "name": "Outlander",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -266,10 +338,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -278,6 +348,7 @@
     {
         "id": 10,
         "name": "Sage",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -286,10 +357,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -298,6 +367,7 @@
     {
         "id": 11,
         "name": "Sailor",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -306,10 +376,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -318,6 +386,7 @@
     {
         "id": 12,
         "name": "Soldier",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -326,10 +395,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},
@@ -338,6 +405,7 @@
     {
         "id": 13,
         "name": "Urchin",
+        "description": "",
         "proficiencies": [
             {
                 "type": "",
@@ -346,10 +414,8 @@
             }
         ],
         "extraLanguages": 0,
-        "equipment": [
-            
-        ],
-        "money":0,
+        "equipment": [],
+        "money": 0,
         "features": [],
         "characteristics": [],
         "variantOption": {},

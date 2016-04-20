@@ -15,7 +15,6 @@ import {Background} from '../../../data/models/Background-model';
 <ion-content padding class="cards-bg">
 <ion-card>
   
-</ion-list>
 </ion-card>
 </ion-content>
 `,

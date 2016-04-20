@@ -51,13 +51,14 @@ export class Background {
      */
     constructor(
         public name: string = "Background",
-        public proficiencies: Array<proficiency>,
-        public extraLanguages: number,
-        public equipment: Array<equip>,
-        public money:Currency,
-        public features: Array<feature>,
-        public characteristics: Array<characteristicDetail>,
-        public variantOption:variant,
-        public extraDetail:string
+        public description:string=null,
+        public proficiencies: Array<proficiency>=[],
+        public extraLanguages: number=0,
+        public equipment: Array<equip>=[],
+        public money:Currency=null,
+        public features: Array<feature>=[],
+        public characteristics: Array<characteristicDetail>=[],
+        public variantOption:variant=null,
+        public extraDetail:string=null
     ) { }
 }
