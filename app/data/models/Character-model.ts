@@ -20,6 +20,7 @@ export class Character {
         public lastDate: Date = new Date(),
         public RaceID: number = 1,
         public SubraceID: number = 1,
-        public Abilities: Array<AbilityScoreDef> = []
+        public Abilities: Array<AbilityScoreDef> = [],
+        public Background: number = 1
     ) { }
 }

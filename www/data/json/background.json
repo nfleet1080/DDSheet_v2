@@ -117,7 +117,7 @@
     },
     {
         "id": 2,
-        "name": "",
+        "name": "Charlatan",
         "proficiencies": [
             {
                 "type": "",
@@ -137,7 +137,7 @@
     },
     {
         "id": 3,
-        "name": "",
+        "name": "Criminal",
         "proficiencies": [
             {
                 "type": "",
@@ -157,7 +157,7 @@
     },
     {
         "id": 4,
-        "name": "",
+        "name": "Entertainer",
         "proficiencies": [
             {
                 "type": "",
@@ -177,7 +177,167 @@
     },
     {
         "id": 5,
-        "name": "",
+        "name": "Folk Hero",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 6,
+        "name": "Guild Artisan",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 7,
+        "name": "Hermit",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 8,
+        "name": "Noble",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 9,
+        "name": "Outlander",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 10,
+        "name": "Sage",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 11,
+        "name": "Sailor",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 12,
+        "name": "Soldier",
+        "proficiencies": [
+            {
+                "type": "",
+                "ids": [],
+                "quantity": 0
+            }
+        ],
+        "extraLanguages": 0,
+        "equipment": [
+            
+        ],
+        "money":0,
+        "features": [],
+        "characteristics": [],
+        "variantOption": {},
+        "extraDetail": ""
+    },
+    {
+        "id": 13,
+        "name": "Urchin",
         "proficiencies": [
             {
                 "type": "",

@@ -3,7 +3,6 @@ import {Component, OnInit} from 'angular2/core';
 import {DataService} from '../../../data/data-service';
 import {Character} from '../../../data/models/Character-model';
 import {Background} from '../../../data/models/Background-model';
-import {BackgroundReviewPage} from './background-review';
 
 @Page({
     template: `
@@ -11,14 +10,11 @@ import {BackgroundReviewPage} from './background-review';
 <button menuToggle *ngIf="!selectedCharacter">
   <ion-icon name="menu"></ion-icon>
 </button>
-<ion-title>Select Background</ion-title>
+<ion-title>{{background?.name}}</ion-title>
 </ion-navbar>
 <ion-content padding class="cards-bg">
 <ion-card>
-  <ion-list>
-  <button ion-item *ngFor="#bg of backgrounds" (click)="selectBackground(bg)">
-    {{bg.name}}
-  </button>
+  
 </ion-list>
 </ion-card>
 </ion-content>
@@ -26,30 +22,29 @@ import {BackgroundReviewPage} from './background-review';
     providers: [DataService]
 })
 
-export class BackgroundSelectionPage {
+export class BackgroundReviewPage {
     tmpChr: Character;
-    backgrounds: Array<Background>;
+    background: Background;
 
     constructor(private dataHelper: DataService, private nav: NavController, navParams: NavParams) {
         this.tmpChr = navParams.get('tempCharacter');
+        this.background = navParams.get('background');
         /*this.tmpChr.Abilities.forEach(ability => {
             console.info(ability.ability.ability.name + ' ' + ability.value + " (+"+ ability.ability.racialBonus +")");
         });*/
-        this.getData();
+        //this.getData();
 
     }
     getData() {
         this.dataHelper.getBackgrounds().subscribe(
             data => {
-                this.backgrounds = data;
+                //this.backgrounds = data;
             },
             error => console.error(error)
             //, () => console.log('')
         );
     }
     selectBackground(bg: Background) {
-        this.tmpChr.Background = bg.id;
-
         this.nav.push(BackgroundReviewPage, {
             background: bg,
             tempCharacter: this.tmpChr

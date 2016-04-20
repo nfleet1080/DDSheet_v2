@@ -5,6 +5,7 @@ import {Ability} from './models/Ability-model';
 import {AdventuringGear} from './models/Adventuring-gear-model'
 import {Alignment} from './models/Alignment-model';
 import {Armor} from './models/Armor-model';
+import {Background} from './models/Background-model';
 import {Die} from './models/Die-model';
 import {ClassModel} from './models/Class-model';
 import {EquipmentPack} from './models/Equipment-pack-model';
@@ -24,6 +25,7 @@ export class DataService {
     adventuringGear: Array<AdventuringGear> = [];
     alignments: Array<Alignment> = [];
     armor: Array<Armor> = [];
+    backgrounds: Array<Background> = [];
     classes: Array<ClassModel> = [];
     equipmentPacks: Array<EquipmentPack> = [];
     equipmentType: Array<EquipmentType> = [];
@@ -52,7 +54,7 @@ export class DataService {
             this.http.get('data/json/alignments.json').map((res: Response) => <Alignment[]>res.json()),
             this.http.get('data/json/armor.json').map((res: Response) => <Armor[]>res.json()),
             this.http.get('data/json/classes.json').map((res: Response) => <ClassModel[]>res.json()).map(classes => {
-                return classes.map((cl) => {return new ClassModel(cl.id,cl.name,cl.description,new Die(cl.hitDie.min, cl.hitDie.max, cl.hitDie.count),cl.primaryAbility, cl.savingThrowProficiencies, cl.equipmentTypeProficiencies, cl.armorProficiencies, cl.weaponProficiencies,cl.toolProficiencies,{amount:new Die(cl.startingWealth.amount.min,cl.startingWealth.amount.max,cl.startingWealth.amount.count),multiplier:cl.startingWealth.multiplier},cl.startingEquip,cl.skills, cl.icon, cl.abilitySuggestion, cl.backgroundSuggestion, cl.spellSuggestion)});
+                return classes.map((cl) => { return new ClassModel(cl.id, cl.name, cl.description, new Die(cl.hitDie.min, cl.hitDie.max, cl.hitDie.count), cl.primaryAbility, cl.savingThrowProficiencies, cl.equipmentTypeProficiencies, cl.armorProficiencies, cl.weaponProficiencies, cl.toolProficiencies, { amount: new Die(cl.startingWealth.amount.min, cl.startingWealth.amount.max, cl.startingWealth.amount.count), multiplier: cl.startingWealth.multiplier }, cl.startingEquip, cl.skills, cl.icon, cl.abilitySuggestion, cl.backgroundSuggestion, cl.spellSuggestion) });
             }),
             this.http.get('data/json/equipmentPacks.json').map((res: Response) => res.json()),
             this.http.get('data/json/equipmentType.json').map((res: Response) => res.json()),
@@ -61,27 +63,28 @@ export class DataService {
             this.http.get('data/json/races.json').map((res: Response) => <Race[]>res.json()),
             this.http.get('data/json/skills.json').map((res: Response) => res.json()),
             this.http.get('data/json/tools.json').map((res: Response) => res.json()),
-            this.http.get('data/json/weapons.json').map((res: Response) => res.json())
-        /*).subscribe(
-            data => {
-                this.abilities = data[0];
-                this.adventuringGear = data[1];
-                this.alignments = data[2];
-                this.armor = data[3];
-                this.classes = data[4];
-                this.equipmentPacks = data[5];
-                this.equipmentType = data[6];
-                this.itemCategory = data[7];
-                this.languages = data[8];
-                this.races = data[9];
-                this.skills = data[10];
-                this.tools = data[11];
-                this.weapons = data[12];
-                console.info(data);
-            },
-            err => console.error(err),
-          () => console.info("loading complete?")  */
-            );
+            this.http.get('data/json/weapons.json').map((res: Response) => res.json()),
+            this.http.get('data/json/background.json').map((res: Response) => <Background[]>res.json())
+            /*).subscribe(
+                data => {
+                    this.abilities = data[0];
+                    this.adventuringGear = data[1];
+                    this.alignments = data[2];
+                    this.armor = data[3];
+                    this.classes = data[4];
+                    this.equipmentPacks = data[5];
+                    this.equipmentType = data[6];
+                    this.itemCategory = data[7];
+                    this.languages = data[8];
+                    this.races = data[9];
+                    this.skills = data[10];
+                    this.tools = data[11];
+                    this.weapons = data[12];
+                    console.info(data);
+                },
+                err => console.error(err),
+              () => console.info("loading complete?")  */
+        );
     }
     getAbilities() {
         return this.http.get('data/json/abilities.json')
@@ -101,14 +104,22 @@ export class DataService {
             //.do(data => console.log(data))
             .catch(this.handleError);
     }
-    getClasses(){
-      return this.http.get('data/json/classes.json')
-          .map(res => <ClassModel[]>res.json())
-          //.do(data => console.log(data))
-          .catch(this.handleError);
-}
-
-    filterByID(obj:Array<any>,id:number){
+    getClasses() {
+        return this.http.get('data/json/classes.json')
+            .map(res => <ClassModel[]>res.json())
+            .map(classes => {
+                return classes.map((cl) => { return new ClassModel(cl.id, cl.name, cl.description, new Die(cl.hitDie.min, cl.hitDie.max, cl.hitDie.count), cl.primaryAbility, cl.savingThrowProficiencies, cl.equipmentTypeProficiencies, cl.armorProficiencies, cl.weaponProficiencies, cl.toolProficiencies, { amount: new Die(cl.startingWealth.amount.min, cl.startingWealth.amount.max, cl.startingWealth.amount.count), multiplier: cl.startingWealth.multiplier }, cl.startingEquip, cl.skills, cl.icon, cl.abilitySuggestion, cl.backgroundSuggestion, cl.spellSuggestion) });
+            })
+            //.do(data => console.log(data))
+            .catch(this.handleError);
+    }
+    getBackgrounds() {
+        return this.http.get('data/json/background.json')
+            .map(res => <Background[]>res.json())
+            //.do(data => console.log(data))
+            .catch(this.handleError);
+    }
+    filterByID(obj: Array<any>, id: number) {
         return obj.filter(item => item.id === id)[0];
     }
     private handleError(error: Response) {

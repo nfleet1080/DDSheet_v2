@@ -133,7 +133,7 @@ interface AbilityScoreDef {
       <ion-card-content>This form is provided if you want to enter in your own values.</ion-card-content>
       <ion-list>
         <ion-item *ngFor="#entry of manual">
-            <ion-label floating>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
+            <ion-label stacked>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
             <ion-input type="text" [(ngModel)]="entry.value"></ion-input>
         </ion-item>
       </ion-list>
