@@ -2,7 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {IDtoDataPipe} from '../../../data/pipes/id-search-pipe';
-import {Race, Subrace} from '../../../data/models/race-model';
+import {Race, Subrace} from '../../../data/models/Race-model';
 import {Ability, AbilityInfoModal} from '../../../data/models/Ability-model';
 import {Character} from '../../../data/models/Character-model';
 import {Language, LanguageInfoModal} from '../../../data/models/Language-model';
