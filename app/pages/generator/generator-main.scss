@@ -8,7 +8,9 @@ ion-list.raceList {
         margin-top: 0;
     }
 }
-
+ion-label[fixed]{
+    flex:0 0 120px;
+}
 /*.toolbar-background {
     //background:#f3f3f3;
 }*/
