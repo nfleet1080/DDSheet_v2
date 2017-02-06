@@ -7,11 +7,11 @@
 
 
 <ion-content padding class="cards-bg">
-    <ion-card *ngFor="#character of characters">
+    <ion-card *ngFor="let character of characters">
         <ion-item>
             <h2><strong>{{character.name}}</strong></h2>
             <p>
-                <ion-badge light>lv {{character.level}}</ion-badge> <span *ngFor="#class of character.Classes | IDtoDataPipe: classes">{{class.name}}</span></p>
+                <ion-badge light>lv {{character.level}}</ion-badge> <span *ngFor="let class of character.Classes | IDtoDataPipe: classes">{{class.name}}</span></p>
         </ion-item>
         <div [ngStyle]="{'background-image':'url('+character.image+')'}" style="height:40vh;background-size:cover;background-position:center center"></div>
         <ion-item>
@@ -34,7 +34,7 @@
     </ion-card>
 
     <!--  <ion-list>
-        <ion-item-sliding *ngFor="#character of characters">
+        <ion-item-sliding *ngFor="let character of characters">
             <button ion-item (click)="viewSheet($event, character)">
                 <ion-thumbnail item-left>
                     <img src="{{character.image}}">

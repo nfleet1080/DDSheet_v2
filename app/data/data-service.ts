@@ -1,6 +1,6 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
-import {Injectable} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {NavController, NavParams} from 'ionic-angular';
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
 import {Ability} from './models/Ability-model';
 import {AdventuringGear} from './models/Adventuring-gear-model'
 import {Alignment} from './models/Alignment-model';

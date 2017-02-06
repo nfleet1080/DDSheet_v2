@@ -1,10 +1,11 @@
-import {Page, NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
+import {NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {DataService} from '../../../data/data-service';
 import {Character} from '../../../data/models/Character-model';
 import {ClassModel} from '../../../data/models/Class-model';
 import {ClassReviewPage} from './class-review-page';
 
-@Page({
+@Component({
   template: `
   <ion-navbar *navbar>
 <button menuToggle *ngIf="!selectedCharacter">
@@ -15,7 +16,7 @@ import {ClassReviewPage} from './class-review-page';
 <ion-content padding class="cards-bg">
 <ion-card>
   <ion-list>
-  <button ion-item *ngFor="#class of classes" (click)="selectClass(class)">
+  <button ion-item *ngFor="let class of classes" (click)="selectClass(class)">
     {{class.name}}
   </button>
 </ion-list>

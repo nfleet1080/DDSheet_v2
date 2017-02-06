@@ -1,6 +1,6 @@
 import {Die} from './Die-model';
-import {Component} from 'angular2/core';
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
 
 
 interface Wealth {
@@ -72,7 +72,7 @@ export class ClassModel {
     ) { }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>{{cl.name}} Spell Suggestion</ion-title>

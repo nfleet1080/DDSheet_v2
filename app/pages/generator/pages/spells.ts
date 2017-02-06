@@ -1,7 +1,7 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
-import {Component, OnInit} from 'angular2/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
 
-@Page({
+@Component({
     template: 'app/name.component.html'
 })
 

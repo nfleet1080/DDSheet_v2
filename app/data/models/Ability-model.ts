@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
 
 /**
  * Ability Model
@@ -34,7 +34,7 @@ export class AbilityScore {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>{{ab.name}}</ion-title>

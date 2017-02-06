@@ -1,11 +1,11 @@
-import {Component, OnInit} from 'angular2/core';
-import {Page, NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {Race} from '../../../data/models/race-model';
 import {Character} from '../../../data/models/Character-model';
 import {RaceReview} from './race-review-page';
 
-@Page({
+@Component({
     //selector: 'SelectRace',
     template: `
     <ion-navbar *navbar>
@@ -16,9 +16,9 @@ import {RaceReview} from './race-review-page';
 </ion-navbar>
 <ion-content padding class="cards-bg">
 <ion-card>
-    <ion-list class="raceList" *ngFor="#race of races">
+    <ion-list class="raceList" *ngFor="let race of races">
     <ion-item-divider light>{{race.name}}</ion-item-divider>
-    <button ion-item *ngFor="#subrace of race.subraces" (click)="selectRace(race, subrace.id)">
+    <button ion-item *ngFor="let subrace of race.subraces" (click)="selectRace(race, subrace.id)">
       {{subrace.name}}
     </button>
   </ion-list>

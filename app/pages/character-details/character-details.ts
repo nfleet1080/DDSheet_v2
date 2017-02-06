@@ -1,8 +1,9 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {Character} from '../../data/models/Character-model';
 
 
-@Page({
+@Component({
   templateUrl: 'build/pages/character-details/character-details.html'
 })
 export class CharacterDetailsPage {

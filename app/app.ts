@@ -1,21 +1,21 @@
-import {App, IonicApp, Platform, MenuController} from 'ionic-angular';
+import {ionicBootstrap, Platform, MenuController,Nav} from 'ionic-angular';
+import {ViewChild, Component} from '@angular/core';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {CharactersPage} from './pages/characters/characters';
 import {CharacterGenerator} from './pages/generator/generator-main';
 import 'es6-shim';
 
-@App({
+@Component({
   templateUrl: 'build/app.html',
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
-class MyApp {
+export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   // make HelloIonicPage the root (or first) page
   rootPage: any = CharactersPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
-    private app: IonicApp,
     private platform: Platform,
     private menu: MenuController
   ) {
@@ -51,7 +51,9 @@ class MyApp {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
-    let nav = this.app.getComponent('nav');
-    nav.setRoot(page.component);
+    this.nav.setRoot(page.component);
   }
 }
+
+ionicBootstrap(MyApp, [], {
+});

@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {IDtoDataPipe} from '../../../data/pipes/id-search-pipe';
 import {Race, Subrace} from '../../../data/models/race-model';
@@ -18,7 +18,7 @@ interface AbilityDisplay {
     color: boolean;
 }
 
-@Page({
+@Component({
     template: `
     <ion-navbar *navbar>
   <button menuToggle *ngIf="!selectedCharacter">
@@ -44,7 +44,7 @@ interface AbilityDisplay {
         <h2>Ability Score Increase</h2><button item-right clear small (click)="asiInfoPopup()"><ion-icon name="information-circle"></ion-icon></button>
     </ion-item>
     <ion-list>
-         <button ion-item *ngFor="#abil of raceAbilities" [class.subraceColor]="abil.color" (click)="InfoPopup(abil.ability)">
+         <button ion-item *ngFor="let abil of raceAbilities" [class.subraceColor]="abil.color" (click)="InfoPopup(abil.ability)">
             {{abil.ability.name}} <ion-badge light>+{{abil.bonus}}</ion-badge>
         </button>
     </ion-list>
@@ -68,7 +68,7 @@ interface AbilityDisplay {
     <ion-card>
       <ion-item><h2>Languages</h2><button item-right clear small (click)="languageInfoPopup()"><ion-icon name="information-circle"></ion-icon></button></ion-item>
       <ion-list>
-        <button ion-item *ngFor="#lang of languages" (click)="languagePopup(lang)" >
+        <button ion-item *ngFor="let lang of languages" (click)="languagePopup(lang)" >
           {{lang.name}}
         </button>
       </ion-list>
@@ -76,11 +76,11 @@ interface AbilityDisplay {
     <ion-card>
       <ion-item><h2>Racial Traits</h2></ion-item>
       <ion-list class="racialTraits">
-        <ion-item  *ngFor="#trait of race.traits">
+        <ion-item  *ngFor="let trait of race.traits">
           <h3>{{trait.name}}</h3>
           <p>{{trait.description}}</p>
         </ion-item>
-        <ion-item  class="subraceColor"  *ngFor="#trait of selectedSubRace.traits">
+        <ion-item  class="subraceColor"  *ngFor="let trait of selectedSubRace.traits">
           <h3>{{trait.name}}</h3>
           <p>{{trait.description}}</p>
         </ion-item>

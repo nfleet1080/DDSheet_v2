@@ -1,5 +1,6 @@
 import {Ability, AbilityInfoModal} from './Ability-model';
-import {Page, NavParams, ViewController, NavController, Modal} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController, NavController, Modal} from 'ionic-angular';
 import {DataService} from './../data-service';
 
 export class Skill {
@@ -13,7 +14,7 @@ export class Skill {
     ) { }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>{{sk.name}}</ion-title>

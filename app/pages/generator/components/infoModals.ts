@@ -1,8 +1,8 @@
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
 
 
-
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>{{title}}</ion-title>
@@ -36,7 +36,7 @@ export class GenericModal {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Size</ion-title>
@@ -72,7 +72,7 @@ export class SizeInfoModal {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Speed</ion-title>
@@ -102,7 +102,7 @@ export class SpeedInfoModal {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Languages</ion-title>
@@ -132,7 +132,7 @@ export class LanguagesInfoModal {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Ability Score Increase</ion-title>

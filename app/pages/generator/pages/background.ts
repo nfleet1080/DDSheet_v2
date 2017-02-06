@@ -1,11 +1,11 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
-import {Component, OnInit} from 'angular2/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../../data/data-service';
 import {Character} from '../../../data/models/Character-model';
 import {Background} from '../../../data/models/Background-model';
 import {BackgroundReviewPage} from './background-review';
 
-@Page({
+@Component({
     template: `
     <ion-navbar *navbar>
 <button menuToggle *ngIf="!selectedCharacter">
@@ -16,7 +16,7 @@ import {BackgroundReviewPage} from './background-review';
 <ion-content padding class="cards-bg">
 <ion-card>
   <ion-list>
-  <button ion-item *ngFor="#bg of backgrounds" (click)="selectBackground(bg)">
+  <button ion-item *ngFor="let bg of backgrounds" (click)="selectBackground(bg)">
     {{bg.name}}
   </button>
 </ion-list>

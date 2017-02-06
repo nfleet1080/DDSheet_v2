@@ -1,4 +1,5 @@
-import {Page, NavController, NavParams, IONIC_DIRECTIVES,Modal, ViewController} from 'ionic-angular';
+import {NavController, NavParams, IONIC_DIRECTIVES,Modal, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {DataService} from '../../../data/data-service';
 import {ClassModel, equip, Skills} from '../../../data/models/Class-model';
 import {AbilityScorePage} from './abilityScores';
@@ -19,7 +20,7 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
 
 
 
-@Page({
+@Component({
     template: `
   <ion-navbar *navbar>
 <button menuToggle *ngIf="!selectedCharacter">
@@ -62,37 +63,37 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
     <ion-item-divider light>Equipment</ion-item-divider>
     <!--ion-item *ngIf="selectedClass.equipmentTypeProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass?.equipmentTypeProficiencies.length > 0">
-        <button (click)="equipmentPopup(item)" ion-item *ngFor="#item of selectedClass.equipmentTypeProficiencies | IDtoDataPipe: equipmentTypeRef">
+        <button (click)="equipmentPopup(item)" ion-item *ngFor="let item of selectedClass.equipmentTypeProficiencies | IDtoDataPipe: equipmentTypeRef">
             {{item.name}}s
         </button>
     </template>
     <!--ion-item *ngIf="selectedClass.armorProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass.armorProficiencies.length > 0">
-        <ion-item *ngFor="#item of selectedClass.armorProficiencies | IDtoDataPipe: armorRef">
+        <ion-item *ngFor="let item of selectedClass.armorProficiencies | IDtoDataPipe: armorRef">
             {{item.name}}
         </ion-item>
     </template>
     <!--ion-item *ngIf="selectedClass.weaponProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass.weaponProficiencies.length > 0">
-        <ion-item *ngFor="#item of selectedClass.weaponProficiencies | IDtoDataPipe: weaponRef">
+        <ion-item *ngFor="let item of selectedClass.weaponProficiencies | IDtoDataPipe: weaponRef">
             {{item.name}}
         </ion-item>
     </template>
     <!--ion-item *ngIf="selectedClass.toolProficiencies.length == 0">None</ion-item-->
     <template [ngIf]="selectedClass.toolProficiencies.length > 0">
-        <ion-item *ngFor="#item of selectedClass.toolProficiencies | IDtoDataPipe: toolRef">
+        <ion-item *ngFor="let item of selectedClass.toolProficiencies | IDtoDataPipe: toolRef">
             {{item.name}}
         </ion-item>
     </template>
     <ion-item-divider light>Saving Throws</ion-item-divider>
-    <button (click)="abilityPopup(item)" ion-item *ngFor="#item of selectedClass.savingThrowProficiencies | IDtoDataPipe: abilitiesRef">
+    <button (click)="abilityPopup(item)" ion-item *ngFor="let item of selectedClass.savingThrowProficiencies | IDtoDataPipe: abilitiesRef">
         {{item.name}}
     </button>
     <ion-item-divider light>Skills</ion-item-divider>
     <ion-item class="wrap">
       You will be given a choice of <ion-badge light>{{selectedClass.skills.howMany}}</ion-badge> from
     </ion-item>
-    <button (click)="skillPopup(item)" ion-item *ngFor="#item of selectedClass.skills.choices | IDtoDataPipe: skillRef">
+    <button (click)="skillPopup(item)" ion-item *ngFor="let item of selectedClass.skills.choices | IDtoDataPipe: skillRef">
       {{item.name}}
     </button>
     </ion-list>
@@ -107,11 +108,11 @@ import {ItemCategory} from '../../../data/models/Item-category-model';
     the equipment granted by your background:
     </ion-item-divider>
     <ion-list>
-      <ion-item *ngFor="#options of selectedClass.startingEquip" class="wrap">
-        <div *ngFor="#orOptions of options;#i = index;">
+      <ion-item *ngFor="let options of selectedClass.startingEquip" class="wrap">
+        <div *ngFor="let orOptions of options;#i = index;">
             <template [ngIf]="i > 0"><br> or </template>({{alphaIndex[i]}})
             <template [ngIf]="orOptions.length > 1 && index > 0"> or</template>
-            <span *ngFor="#andOptions of orOptions;#index = index; #last = last">
+            <span *ngFor="let andOptions of orOptions;#index = index; #last = last">
                 <template [ngIf]="index > 0"> and</template>
                 <ion-badge *ngIf="andOptions.qty > 1" light>{{andOptions.qty}}</ion-badge>
                 <template [ngIf]='andOptions.Type == "Weapon"'>{{andOptions.id | IDtoDataSinglePipe: weaponRef: "name"}}<template [ngIf]="andOptions.ifProficient"> (if proficient)</template></template>

@@ -1,11 +1,11 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
-import {Directive} from 'angular2/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Directive, Component} from '@angular/core';
 import {raceSelector} from './pages/race-page';
 
  @Directive({
   selector: 'SelectRace' 
 }) 
-@Page({
+@Component({
   templateUrl: 'build/pages/generator/generator-main.html',
   directives:[raceSelector]
 })

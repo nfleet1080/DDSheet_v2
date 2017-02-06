@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
 
 export class EquipmentType {
     id: number;
@@ -13,7 +13,7 @@ export class EquipmentType {
 }
 
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>{{et.name}}</ion-title>

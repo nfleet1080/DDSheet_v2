@@ -1,4 +1,5 @@
-import {Page, NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams, IONIC_DIRECTIVES, Modal, ViewController} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
 import {CharacterService} from '../../../data/character-service';
 import {Character} from '../../../data/models/Character-model';
@@ -9,7 +10,7 @@ import {Die} from '../../../data/models/Die-model';
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 import {BackgroundSelectionPage} from './background.ts';
 
-import {Directive, ElementRef, Input} from 'angular2/core';
+import {Directive, ElementRef, Input} from '@angular/core';
 @Directive({
     selector: '[gu-transit]'
 })
@@ -35,7 +36,7 @@ interface AbilityScoreDef {
     value: number;
 }
 
-@Page({
+@Component({
     template: `
   <ion-navbar *navbar>
   <button menuToggle *ngIf="!selectedCharacter">
@@ -74,12 +75,12 @@ interface AbilityScoreDef {
           <ion-row>
               <ion-col width-25 class="rollCol">
                   <ion-list no-lines>
-                    <ion-item *ngFor="#result of rollResults"><ion-badge highlight>{{result}}</ion-badge></ion-item>
+                    <ion-item *ngFor="let result of rollResults"><ion-badge highlight>{{result}}</ion-badge></ion-item>
                   </ion-list>
               </ion-col>
               <ion-col width-75>
                   <div [dragula]='"rollAbilityOrder"'   [dragulaModel]='rollAbilities'>
-                      <div class="abilities" *ngFor="#ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
+                      <div class="abilities" *ngFor="let ab of rollAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
                       </div>
               </ion-col>
           </ion-row>
@@ -95,12 +96,12 @@ interface AbilityScoreDef {
           <ion-row>
               <ion-col width-25 class="rollCol">
                   <ion-list no-lines>
-                    <ion-item *ngFor="#result of quickScores"><ion-badge highlight>{{result}}</ion-badge></ion-item>
+                    <ion-item *ngFor="let result of quickScores"><ion-badge highlight>{{result}}</ion-badge></ion-item>
                   </ion-list>
               </ion-col>
               <ion-col width-75>
                   <div [dragula]='"quickAbilityOrder"'   [dragulaModel]='quickAbilities'>
-                      <div class="abilities" *ngFor="#ab of quickAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
+                      <div class="abilities" *ngFor="let ab of quickAbilities">{{ab.ability.name}} <ion-badge *ngIf="ab.racialBonus > 0" primary>+{{ab.racialBonus}}</ion-badge><ion-icon name="reorder" style="float:right"></ion-icon></div>
                       </div>
               </ion-col>
           </ion-row>
@@ -114,7 +115,7 @@ interface AbilityScoreDef {
             <button primary (click)="buyHelp()" style="float:right"><ion-icon name="help"></ion-icon></button><ion-badge [class.secondary]='calculatePointTotal() > 10' [class.warn]='calculatePointTotal() > 0 && calculatePointTotal() <= 10' [class.danger]="calculatePointTotal() == 0">{{calculatePointTotal()}}</ion-badge> points available
             </ion-card-content>
             <ion-list>
-                <ion-item *ngFor="#buyItem of pointBuy;#i = index">
+                <ion-item *ngFor="let buyItem of pointBuy;#i = index">
                     <button (click)="addPoint(i)" [attr.disabled]="buyItem.value == 15 || notEnoughPoints(buyItem.value)? true : null">
                     <ion-icon name="add" style="padding:0 .5em"></ion-icon>
                     </button>
@@ -132,7 +133,7 @@ interface AbilityScoreDef {
       <ion-card>
       <ion-card-content>This form is provided if you want to enter in your own values.</ion-card-content>
       <ion-list>
-        <ion-item *ngFor="#entry of manual">
+        <ion-item *ngFor="let entry of manual">
             <ion-label stacked>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
             <ion-input type="text" [(ngModel)]="entry.value"></ion-input>
         </ion-item>
@@ -141,7 +142,7 @@ interface AbilityScoreDef {
       </template>
       </div>
       
-      <ion-card *ngFor="#class of charClasses">
+      <ion-card *ngFor="let class of charClasses">
        <ion-item>
             <h2>{{class.name}} Quick Build</h2>
         </ion-item>
@@ -361,7 +362,7 @@ export class AbilityScorePage {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>4d6 Roll</ion-title>
@@ -392,7 +393,7 @@ export class RollInfoModal {
         this.viewCtrl.dismiss();
     }
 }
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Static Scores</ion-title>
@@ -422,7 +423,7 @@ export class QuickInfoModal {
     }
 }
 
-@Page({
+@Component({
     template: `
     <ion-toolbar>
   <ion-title>Point Buy (Variant)</ion-title>

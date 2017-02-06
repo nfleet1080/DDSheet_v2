@@ -1,10 +1,10 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
-import {Component, OnInit} from 'angular2/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../../data/data-service';
 import {Character} from '../../../data/models/Character-model';
 import {Background} from '../../../data/models/Background-model';
 
-@Page({
+@Component({
     template: `
     <ion-navbar *navbar>
 <button menuToggle *ngIf="!selectedCharacter">

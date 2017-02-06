@@ -1,26 +1,27 @@
 import {Race} from './Race-model';
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
 
 
 export class Language {
-    id: number;
+  id: number;
 
-    /**
-     * Creates an instance of Language.
-     *
-     * @param {string} [name="Language Name"]
-     * @param {Array<number>} TypicalSpeakers (Race ID)
-     * @param {string} Script (description)
-     */
-    constructor(
-        public name: string = "Language Name",
-        public TypicalSpeakers: Array<string> = [],
-        public Script: string = "Common"
-        ) { }
+  /**
+   * Creates an instance of Language.
+   *
+   * @param {string} [name="Language Name"]
+   * @param {Array<number>} TypicalSpeakers (Race ID)
+   * @param {string} Script (description)
+   */
+  constructor(
+    public name: string = "Language Name",
+    public TypicalSpeakers: Array<string> = [],
+    public Script: string = "Common"
+  ) { }
 }
 
-@Page({
-    template: `
+@Component({
+  template: `
     <ion-toolbar>
   <ion-title>{{lg.name}}</ion-title>
   <ion-buttons end>
@@ -35,7 +36,7 @@ export class Language {
       <h2>Typical Speakers</h2>
   </ion-item>
     <ion-list>
-      <ion-item *ngFor="#ts of lg.TypicalSpeakers">
+      <ion-item *ngFor="let ts of lg.TypicalSpeakers">
         {{ts}}
       </ion-item>
       </ion-list>
@@ -53,19 +54,19 @@ export class Language {
   </ion-content>`
 })
 export class LanguageInfoModal {
-    lg: Language = new Language();
-    viewCtrl: ViewController;
+  lg: Language = new Language();
+  viewCtrl: ViewController;
 
-    constructor(viewCtrl: ViewController, params: NavParams) {
-        this.viewCtrl = viewCtrl;
-        //debugger;
-        this.lg.id = params.get('id');
-        this.lg.name = params.get('name');
-        this.lg.TypicalSpeakers = params.get('TypicalSpeakers');
-        this.lg.Script = params.get('Script');
-    }
+  constructor(viewCtrl: ViewController, params: NavParams) {
+    this.viewCtrl = viewCtrl;
+    //debugger;
+    this.lg.id = params.get('id');
+    this.lg.name = params.get('name');
+    this.lg.TypicalSpeakers = params.get('TypicalSpeakers');
+    this.lg.Script = params.get('Script');
+  }
 
-    close() {
-        this.viewCtrl.dismiss();
-    }
+  close() {
+    this.viewCtrl.dismiss();
+  }
 }

@@ -1,4 +1,5 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {CharacterDetailsPage} from '../character-details/character-details';
 import {DataService} from '../../data/data-service';
 import {Ability} from '../../data/models/Ability-model';
@@ -7,7 +8,7 @@ import {ClassModel} from '../../data/models/Class-model';
 import {IDtoDataPipe} from '../../data/pipes/id-search-pipe';
 
 
-@Page({
+@Component({
     templateUrl: 'build/pages/characters/characters.html',
     providers: [DataService],
     pipes: [IDtoDataPipe]
