@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
 import {DataService} from '../../../data/data-service';
-import {Race} from '../../../data/models/race-model';
+import {Race} from '../../../data/models/Race-model';
 import {Character} from '../../../data/models/Character-model';
 import {RaceReview} from './race-review-page';
 

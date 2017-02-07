@@ -5,7 +5,7 @@ import {CharacterService} from '../../../data/character-service';
 import {Character} from '../../../data/models/Character-model';
 import {ClassModel} from '../../../data/models/Class-model';
 import {Ability, AbilityScore, AbilityInfoModal} from '../../../data/models/Ability-model';
-import {Race, Subrace, ASI} from '../../../data/models/race-model';
+import {Race, Subrace, ASI} from '../../../data/models/Race-model';
 import {Die} from '../../../data/models/Die-model';
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 import {BackgroundSelectionPage} from './background.ts';
@@ -133,8 +133,13 @@ interface AbilityScoreDef {
       <ion-card>
       <ion-card-content>This form is provided if you want to enter in your own values.</ion-card-content>
       <ion-list>
+<<<<<<< HEAD
         <ion-item *ngFor="let entry of manual">
             <ion-label stacked>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
+=======
+        <ion-item *ngFor="#entry of manual">
+            <ion-label fixed>{{entry.ability.ability.name}}&nbsp;<ion-badge *ngIf="entry.ability.racialBonus > 0" primary>+{{entry.ability.racialBonus}}</ion-badge></ion-label>
+>>>>>>> 0a99f60c23c1ad1ca33731833a11f80b520d7ed9
             <ion-input type="text" [(ngModel)]="entry.value"></ion-input>
         </ion-item>
       </ion-list>
